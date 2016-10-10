@@ -1,9 +1,11 @@
+<%-- 
+    Document   : index
+    Created on : 10 oct. 2016, 14:16:53
+    Author     : Yohann
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Bibliothèque</title>
@@ -15,6 +17,8 @@ and open the template in the editor.
     </head>
     <body>
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addUser">Ajouter un Usager</button>
+        <%= session.getAttribute("message") %>
+                  
         <div class="modal fade" id="addUser" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="modal-content">

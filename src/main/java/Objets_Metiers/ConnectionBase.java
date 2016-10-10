@@ -21,24 +21,33 @@ import java.util.logging.Logger;
  * @author Yohann
  */
 public class ConnectionBase {
-    Connection connection;
-    Statement statement;
-    
-    public ConnectionBase(){
+    public static Statement establishStatement(){
+        Connection connection;
+        Statement statement = null;
         try {
+            Class.forName("org.mariadb.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mysql?user=root&password=root");
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnectionBase.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public Statement getStatement(){
-        statement = null;
-        try {
             statement = connection.createStatement();
         } catch (SQLException ex) {
-            Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConnectionBase.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ConnectionBase.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return statement;
+    }
+    
+    public static Connection establishConnection(){
+        Connection connection = null;
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+           connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/mysql?user=root&password=root");
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionBase.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ConnectionBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return connection;
     }
 }
