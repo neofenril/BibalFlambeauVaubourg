@@ -1,22 +1,29 @@
 package Objets_Metiers;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import util.HibernateUtil;
 
 
 
 public class Usager {
+    private int id;
     private String nom;
     private String prenom;
     private String mail;
 
     
     public Usager(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public String getNom() {
         return nom;
@@ -40,33 +47,28 @@ public class Usager {
 
     public void setMail(String mail) {
         this.mail = mail;
-    }
-    
-    public Usager(String n, String p, String m){
-        nom = n;
-        prenom = p;
-        mail = m;
-    }
-        
+    }   
          
     /**
      * 
-     * @param nom
+     * @param mail
      */
-    public static Usager e_identification(String nom, String prenom){
-        Statement stm = ConnectionBase.establishStatement();
-
+    public static Usager e_identification(String mail){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        
+        String hql = "SELECT u FROM Usager u WHERE u.mail=:mail";
+        Query query = session.createQuery(hql);
+        query.setParameter("mail", mail);
+        List results = query.list();
+        
+        session.close();
+        
         Usager u = null;
-        if(stm != null){
-            try {
-                ResultSet resultat = stm.executeQuery( "SELECT id, nom, prenom, mail FROM Usager WHERE nom=\""+nom+"\" AND prenom=\""+prenom+"\"" );
-                resultat.first();
-                u = new Usager(resultat.getString( "nom" ), resultat.getString( "prenom" ), resultat.getString( "mail" ));
-            } catch (SQLException ex) {
-                Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if(!results.isEmpty()){
+            u = (Usager)results.get(0);
         }
-
+        
         return u;
     }
 
@@ -75,21 +77,19 @@ public class Usager {
      * @param name
      */
     public static Usager e_ajouter(String nom, String prenom, String mail) {
-    	Connection conn = ConnectionBase.establishConnection();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+		 
+	Usager nvUsager = new Usager();
+        nvUsager.setNom(nom);
+        nvUsager.setPrenom(prenom);
+        nvUsager.setMail(mail);
+        session.save(nvUsager);
         
-        if(conn != null){
-            try {
-                PreparedStatement preparedStmt = conn.prepareStatement("INSERT INTO Usager(nom, prenom, mail) VALUES (?,?,?)");
-                preparedStmt.setString (1, nom);
-                preparedStmt.setString (2, prenom);
-                preparedStmt.setString (3, mail);
-                preparedStmt.execute();
-            } catch (SQLException ex) {
-                Logger.getLogger(Usager.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+	session.getTransaction().commit();
+        session.close();
         
-        return new Usager(nom, prenom, mail);
+        return nvUsager;
     }
     
     /**

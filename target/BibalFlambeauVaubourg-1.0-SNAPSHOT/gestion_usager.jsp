@@ -15,7 +15,7 @@
     String mail = usager.getMail();
     
     boolean isEmail = Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", mail);
-    Usager uExiste = Usager.e_identification(nom, prenom);
+    Usager uExiste = Usager.e_identification(mail);
     
     String message = "ok";
     if(isEmail && nom!=null && prenom!=null && uExiste==null){
@@ -25,8 +25,6 @@
     }
     
     session.setAttribute("message", message);
-    response.sendRedirect("index.html");
+    response.sendRedirect("index.jsp");
 %>
-
-<h4><%= session.getAttribute("message") %></h4>
 
