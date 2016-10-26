@@ -1,0 +1,14 @@
+Structure hibernate (dans other sources):
+- fichier de config (connection base + localisation xml de mapping): hibernate.cfg.xml
+- folder Objets_Metiers: tous les fichiers xml de mapping (1 par classe / table de la bdd)
+- HibernateUtil dans le package util dans source package = gestion des sessions pour execution des requetes
+
+Insertion / Lecture avec hibernate: voir Usager.java methode e_ajouter / e_identification
+
+Un fichier jsp par package (diagramme de package):
+- traitements a faire gérés par un switch case (voir gestion_oeuvre_exemplaire.jsp)
+
+Si tu veux faire un nouveaux mapping il faut:
+- dans le java: constructeur vide + getter et setter sur chaque attributs
+- dans le xml: meme nom dans le property que les noms d'attributs 
+- prend exemple sur les autres fichiers
