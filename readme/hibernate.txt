@@ -12,3 +12,7 @@ Si tu veux faire un nouveaux mapping il faut:
 - dans le java: constructeur vide + getter et setter sur chaque attributs
 - dans le xml: meme nom dans le property que les noms d'attributs 
 - prend exemple sur les autres fichiers
+
+Conseils:
+- clean et build régulierement
+- n'oublie pas de lancer HeidiSQL ;)
