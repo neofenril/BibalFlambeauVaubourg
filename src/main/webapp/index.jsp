@@ -96,21 +96,15 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>
-                                        Date Ajout : 
+                                        Date Edition :  
                                     </td>
                                     <td>
-                                        
-                                        <input type="text" id='searchStartDate' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
 
-                                        <script type="text/javascript">
-                                            $(function () {
-                                                $('#searchStartDate').datepicker({
-                                                    format: "dd/mm/yyyy"
-                                                });
-                                            });
-                                        </script>
+                                        <input type="text" id='datePickerLivre' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
+
+
                                     </td>
-                                    
+
                                 </tr>
                                 <tr>
                                     <td>
@@ -159,10 +153,10 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>
-                                        Date Parution (jj/mm/aaaa):
+                                        Date Parution :
                                     </td>
                                     <td>
-                                        <input type="text" name="date" value="" />
+                                        <input type="text" id='datePickerMag' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
                                     </td>
                                 </tr>
                                 <tr>
@@ -204,7 +198,7 @@ and open the template in the editor.
                             <table>
                                 <tr>
                                     <td>
-                                        Type Oeuvre:
+                                        Type Oeuvre :
                                     </td>
                                     <td>
                                         Livre <input type="radio" name="typeOeuvre" value="livre" checked="checked" />
@@ -213,7 +207,7 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>
-                                        Titre Oeuvre:
+                                        Titre Oeuvre :
                                     </td>
                                     <td>
                                         <input type="text" name="titre" value="" />
@@ -229,10 +223,10 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>
-                                        Date Achat (jj/mm/aaaa):
+                                        Date Achat :
                                     </td>
                                     <td>
-                                        <input type="text" name="date" value="" />
+                                        <input type="text" id='datePickerEx' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
                                     </td>
                                 </tr>
                             </table>
@@ -271,6 +265,18 @@ and open the template in the editor.
 </html>
 <script type="text/javascript">
     $(function () {
-        $('#datetimepicker1').datepicker();
+        $('#datePickerLivre').datepicker({
+            format: "dd/mm/yyyy"
+        });
+    });
+    $(function () {
+        $('#datePickerMag').datepicker({
+            format: "dd/mm/yyyy"
+        });
+    });
+    $(function () {
+        $('#datePickerEx').datepicker({
+            format: "dd/mm/yyyy"
+        });
     });
 </script>
