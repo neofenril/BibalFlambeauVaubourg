@@ -38,7 +38,7 @@
             Magazine mExiste = Magazine.e_identification(titreMagazine);
 
             if(titreMagazine!=null && auteurMagazine!=null && dateMagazine!=null && numeroMagazine!=null && mExiste==null){
-                Magazine m = Magazine.e_ajouter(titreMagazine, auteurMagazine, dateMagazine, Integer.valueOf(numeroMagazine), Integer.valueOf(periodiciteMagazine));
+                Magazine m = Magazine.e_ajouter(titreMagazine, auteurMagazine, dateMagazine, Integer.valueOf(numeroMagazine), periodiciteMagazine);
             }else{
                 message = "ko";
             }

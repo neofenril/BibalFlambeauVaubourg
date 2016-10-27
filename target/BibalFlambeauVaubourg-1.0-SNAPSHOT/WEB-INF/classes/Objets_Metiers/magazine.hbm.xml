@@ -12,7 +12,7 @@
       <property name="titre" />
       <property name="auteur" />
       <property name="numero" />
-      <property name="date_parution" />
+      <property name="date_parution" type="date"/>
       <property name="periodicite" />
   </class>
 </hibernate-mapping>

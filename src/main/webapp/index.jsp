@@ -163,7 +163,7 @@ and open the template in the editor.
                                      Periodicite :
                                 </td>
                                 <td>
-                                    <input type="number" name="periodicite" value="" />
+                                    <input type="text" name="periodicite" value="" />
                                 </td>
                             </tr>
                         </table>

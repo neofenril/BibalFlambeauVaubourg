@@ -1,21 +1,23 @@
 package Objets_Metiers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
 
 public class Livre extends Oeuvre {
-	private String date_edition;
+	private Date date_edition;
 	private String resume;
         
         public Livre(){}
 
-        public String getDate_edition() {
+        public Date getDate_edition() {
             return date_edition;
         }
 
-        public void setDate_edition(String date_edition) {
+        public void setDate_edition(Date date_edition) {
             this.date_edition = date_edition;
         }
 
@@ -57,7 +59,15 @@ public class Livre extends Oeuvre {
 	Livre nvLivre = new Livre();
         nvLivre.setTitre(titre);
         nvLivre.setAuteur(auteur);
-        nvLivre.setDate_edition(date);
+        
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date d = formatter.parse(date);
+            nvLivre.setDate_edition(d);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         nvLivre.setResume(resume);
         session.save(nvLivre);
         

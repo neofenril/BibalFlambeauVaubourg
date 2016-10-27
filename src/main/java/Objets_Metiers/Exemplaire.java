@@ -1,5 +1,7 @@
 package Objets_Metiers;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -8,7 +10,7 @@ import util.HibernateUtil;
 public class Exemplaire {
 
 	private int id;
-	private String date_achat;
+	private Date date_achat;
 	private String etat;
 	private Livre livre;
 	private Magazine magazine;
@@ -23,11 +25,11 @@ public class Exemplaire {
             this.id = id;
         }
 
-        public String getDate_achat() {
+        public Date getDate_achat() {
             return date_achat;
         }
 
-        public void setDate_achat(String date_achat) {
+        public void setDate_achat(Date date_achat) {
             this.date_achat = date_achat;
         }
 
@@ -104,7 +106,16 @@ public class Exemplaire {
         session.beginTransaction();
 		 
 	Exemplaire nvExemp = new Exemplaire();
-        nvExemp.setDate_achat(date);
+        
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date d = formatter.parse(date);
+            nvExemp.setDate_achat(d);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         nvExemp.setEtat("neuf");
         
         if(typeOeuvre.equals("livre")){

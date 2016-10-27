@@ -11,7 +11,7 @@
       </id>
       <property name="titre" />
       <property name="auteur" />
-      <property name="date_edition" />
+      <property name="date_edition" type="date"/>
       <property name="resume" />
   </class>
 </hibernate-mapping>

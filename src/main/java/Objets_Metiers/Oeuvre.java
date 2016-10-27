@@ -9,7 +9,7 @@ public abstract class Oeuvre {
         private int id;
 	private String titre;
 	private String auteur;
-        
+
         public Oeuvre(){}
 
         public int getId() {
