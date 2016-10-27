@@ -9,9 +9,7 @@ public abstract class Oeuvre {
         private int id;
 	private String titre;
 	private String auteur;
-	private int type;
-	private int nbResa;
-
+        
         public Oeuvre(){}
 
         public int getId() {
@@ -37,44 +35,14 @@ public abstract class Oeuvre {
         public void setAuteur(String auteur) {
             this.auteur = auteur;
         }
-
-        public int getType() {
-            return type;
-        }
-
-        public void setType(int type) {
-            this.type = type;
-        }
-
-        public int getNbResa() {
-            return nbResa;
-        }
-
-        public void setNbResa(int nbResa) {
-            this.nbResa = nbResa;
-        }
         
-    public static Oeuvre e_identification(String titre) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        
-        String hqlM = "SELECT m FROM Magazine m WHERE m.titre=:titre";
-        Query queryM = session.createQuery(hqlM);
-        queryM.setParameter("titre", titre);
-        List results = queryM.list();
-        
-        String hqlL = "SELECT l FROM Livre l WHERE l.titre=:titre";
-        Query queryL = session.createQuery(hqlL);
-        queryL.setParameter("titre", titre);
-        results.addAll(queryL.list());
-        
-        session.close();
-        
+    public static Oeuvre e_identification(String titre, String type) {
         Oeuvre o = null;
-        if(!results.isEmpty()){
-            o = (Oeuvre)results.get(0);
+        if(type.equals("magazine")){
+            o = Magazine.e_identification(titre);
+        }else{
+            o = Livre.e_identification(titre);
         }
-        
         return o;
     }
 }

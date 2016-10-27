@@ -10,7 +10,8 @@ public class Exemplaire {
 	private int id;
 	private String date_achat;
 	private String etat;
-	private String titreOeuvre;
+	private Livre livre;
+	private Magazine magazine;
 
         public Exemplaire(){}
 
@@ -38,13 +39,23 @@ public class Exemplaire {
             this.etat = etat;
         }
 
-        public String getTitreOeuvre() {
-            return titreOeuvre;
-        }
+    public Livre getLivre() {
+        return livre;
+    }
 
-        public void setTitreOeuvre(String titreOeuvre) {
-            this.titreOeuvre = titreOeuvre;
-        }
+    public void setLivre(Livre idLivre) {
+        this.livre = idLivre;
+    }
+
+    public Magazine getMagazine() {
+        return magazine;
+    }
+
+    public void setMagazine(Magazine magazine) {
+        this.magazine = magazine;
+    }
+
+    
         
         
 	/**
@@ -88,14 +99,20 @@ public class Exemplaire {
 		throw new UnsupportedOperationException();
 	}
         
-    public static Exemplaire e_ajouter(String date, String titreOeuvre) {
+    public static Exemplaire e_ajouter(String date, String typeOeuvre, Oeuvre oeuvre) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 		 
 	Exemplaire nvExemp = new Exemplaire();
         nvExemp.setDate_achat(date);
         nvExemp.setEtat("neuf");
-        nvExemp.setTitreOeuvre(titreOeuvre);
+        
+        if(typeOeuvre.equals("livre")){
+            nvExemp.setLivre((Livre)oeuvre);
+        }else{
+            nvExemp.setMagazine((Magazine)oeuvre);
+        }
+        
         session.save(nvExemp);
         
 	session.getTransaction().commit();

@@ -11,6 +11,7 @@
       </id>
       <property name="date_achat" />
       <property name="etat" />
-      <property name="titreOeuvre" />
+      <many-to-one name="livre" column="idLivre" not-null="false"/>
+      <many-to-one name="magazine" column="idMagazine" not-null="false"/>
     </class>
 </hibernate-mapping>

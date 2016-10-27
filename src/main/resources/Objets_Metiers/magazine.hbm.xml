@@ -11,8 +11,6 @@
       </id>
       <property name="titre" />
       <property name="auteur" />
-      <property name="type" />
-      <property name="nbResa" />
       <property name="numero" />
       <property name="date_parution" />
       <property name="periodicite" />

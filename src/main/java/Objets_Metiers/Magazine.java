@@ -71,8 +71,6 @@ public class Magazine extends Oeuvre {
         nvMagazine.setDate_parution(date);
         nvMagazine.setNumero(numero);
         nvMagazine.setPeriodicite(periodicite);
-        nvMagazine.setNbResa(0);
-        nvMagazine.setType(0);
         session.save(nvMagazine);
         
 	session.getTransaction().commit();

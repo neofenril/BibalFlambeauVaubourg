@@ -47,13 +47,14 @@
             String titreExemp = request.getParameter("titre");
             String nbExemp = request.getParameter("nb");
             String dateExemp = request.getParameter("date");
+            String typeOeuvre = request.getParameter("typeOeuvre");
             
-            Oeuvre oExiste = Oeuvre.e_identification(titreExemp);
+            Oeuvre oExiste = Oeuvre.e_identification(titreExemp, typeOeuvre);
             
             if(titreExemp!=null && nbExemp!=null && dateExemp!=null && oExiste!=null){
                int nb = Integer.valueOf(nbExemp);
                for(int i=0; i<nb; i++){
-                   Exemplaire e = Exemplaire.e_ajouter(dateExemp, oExiste.getTitre());
+                   Exemplaire e = Exemplaire.e_ajouter(dateExemp, typeOeuvre, oExiste);
                }
             }else{
                 message = "ko";

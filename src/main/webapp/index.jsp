@@ -189,6 +189,15 @@ and open the template in the editor.
                         <table>
                             <tr>
                                 <td>
+                                    Type Oeuvre:
+                                </td>
+                                <td>
+                                    Livre <input type="radio" name="typeOeuvre" value="livre" checked="checked" />
+                                    Magazine <input type="radio" name="typeOeuvre" value="magazine" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     Titre Oeuvre:
                                 </td>
                                 <td>

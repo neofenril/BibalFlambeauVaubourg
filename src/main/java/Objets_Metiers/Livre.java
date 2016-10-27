@@ -59,8 +59,6 @@ public class Livre extends Oeuvre {
         nvLivre.setAuteur(auteur);
         nvLivre.setDate_edition(date);
         nvLivre.setResume(resume);
-        nvLivre.setNbResa(0);
-        nvLivre.setType(0);
         session.save(nvLivre);
         
 	session.getTransaction().commit();

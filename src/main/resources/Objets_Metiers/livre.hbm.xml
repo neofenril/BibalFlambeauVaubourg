@@ -11,8 +11,6 @@
       </id>
       <property name="titre" />
       <property name="auteur" />
-      <property name="type" />
-      <property name="nbResa" />
       <property name="date_edition" />
       <property name="resume" />
   </class>
