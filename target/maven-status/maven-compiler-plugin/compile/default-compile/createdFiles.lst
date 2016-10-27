@@ -13,3 +13,4 @@ IHM\IHM_usager.class
 Objets_Metiers\Oeuvre.class
 Application\Gestion_usager.class
 Objets_Metiers\Reservation.class
+.netbeans_automatic_build
