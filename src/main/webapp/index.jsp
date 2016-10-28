@@ -23,6 +23,7 @@ and open the template in the editor.
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addLivre">Ajouter un Livre</button>
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addMagazine">Ajouter un Magazine</button>
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addExemplaire">Ajouter un Exemplaire</button>
+        <a href="reservation.jsp">Réservations</a>
         <div class="modal fade" id="addUser" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
