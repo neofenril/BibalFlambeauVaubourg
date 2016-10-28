@@ -61,7 +61,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                            <input type="hidden" name="gestion_oeuvre" value="exemplaire" />
+                            <input type="hidden" name="addOrDel" value="add" />
                             <input type="submit" class="btn btn-primary" value="Enregistrer" />
                         </div>
                     </form>
@@ -76,7 +76,53 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body">
-                            autres trucs ici
+                            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            Ajout d'une réservation
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <form action="./gestion_resa_et_emprunt.jsp" method="POST">
+                        <div class="modal-body">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Type Oeuvre :
+                                    </td>
+                                    <td>
+                                        Livre <input type="radio" name="typeOeuvre" value="livre" checked="checked" />
+                                        Magazine <input type="radio" name="typeOeuvre" value="magazine" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Titre Oeuvre :
+                                    </td>
+                                    <td>
+                                        <input type="text" name="titre" value="" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Adresse email Usager :
+                                    </td>
+                                    <td>
+                                        <input type="text" name="adress"  />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                            <input type="hidden" name="addOrDel" value="del" />
+                            <input type="submit" class="btn btn-primary" value="Enregistrer" />
+                        </div>
+                    </form>
+                        </div>
+                    </div>
+                </div>
                         </div>
                     </div>
                 </div>

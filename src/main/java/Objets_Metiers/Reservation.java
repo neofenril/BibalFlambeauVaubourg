@@ -2,7 +2,9 @@ package Objets_Metiers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import util.HibernateUtil;
 
 public class Reservation {
@@ -47,15 +49,53 @@ public class Reservation {
             
             return nvResa;
         }
+        
+        public static Reservation e_identification(Usager usager, Oeuvre oeuvre, String typeOeuvre) {
+        
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        
+        
+        String hql ;
+        
+        List results;
+        if(typeOeuvre.equals("livre")){
+             hql = "SELECT r FROM Reservation r WHERE r.usager=:usager AND r.livre=:oeuvre";
+             Query query = session.createQuery(hql);
+             query.setParameter("oeuvre", (Livre)oeuvre);
+             query.setParameter("usager", usager);
+             results = query.list();
+        }else{
+             hql = "SELECT r FROM Reservation r WHERE r.usager=:usager AND r.magazine=:oeuvre";
+             Query query = session.createQuery(hql);
+             query.setParameter("oeuvre", (Magazine)oeuvre);
+             query.setParameter("usager", usager);
+             results = query.list();
+        }
+        
+        
+        session.close();
+        
+        Reservation r = null;
+        if(!results.isEmpty()){
+            r = (Reservation)results.get(0);
+        }
+        
+        return r;
+    }
+        
 	/**
 	 * 
 	 * @param u
 	 * @param o
 	 * @param date
 	 */
-	public void e_supprimer(Usager u, Oeuvre o, String date) {
-		// TODO - implement Reservation.e_supprimer
-		throw new UnsupportedOperationException();
+	public static void e_supprimer(Reservation resa) {
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+            session.delete(resa);
+            session.getTransaction().commit();
+            session.close();
 	}
 
     public int getId() {

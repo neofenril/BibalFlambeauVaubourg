@@ -14,15 +14,14 @@
 <%@page import="Objets_Metiers.Reservation"%>
 
 <%
-    String action = request.getParameter("gestion_oeuvre");
+    String action = request.getParameter("addOrDel");
     String message = "ok";
     
-    
+    switch (action)
+    {
+        case "add":
             String titreOeuvre = request.getParameter("titre").trim();
             String mailUser = request.getParameter("adress").trim();
-            
-            
-            
             String typeOeuvre = request.getParameter("typeOeuvre");
             
             Oeuvre oExiste = Oeuvre.e_identification(titreOeuvre, typeOeuvre);
@@ -38,6 +37,24 @@
                 message = "ko";
             }
             
+        case "del":
+            String titreOeuvreSupp = request.getParameter("titre").trim();
+            String mailUserSupp = request.getParameter("adress").trim();
+            String typeOeuvreSupp = request.getParameter("typeOeuvre");
+            
+            Oeuvre oExisteSupp = Oeuvre.e_identification(titreOeuvreSupp, typeOeuvreSupp);
+            Usager uExisteSupp = Usager.e_identification(mailUserSupp);
+            
+            Reservation rExiste = Reservation.e_identification(uExisteSupp, oExisteSupp, typeOeuvreSupp);
+            if(rExiste != null)
+            {
+                Reservation.e_supprimer(rExiste);
+            }
+            else{
+                message = "ko";
+            }
+            
+    }       
     session.setAttribute("message", message);
     response.sendRedirect("index.jsp");   
             
