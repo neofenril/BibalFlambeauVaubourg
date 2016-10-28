@@ -29,7 +29,7 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <form action="./gestion_reservation.jsp" method="POST">
+                            <form action="./gestion_resa_et_emprunt.jsp" method="POST">
                         <div class="modal-body">
                             <table>
                                 <tr>

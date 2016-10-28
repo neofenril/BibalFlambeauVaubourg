@@ -31,8 +31,12 @@
             Date date = new Date(Calendar.getInstance().getTime().getTime());
             
             
-            
+            if (oExiste!=null && date !=null && uExiste!=null)
+            {
             Reservation r = Reservation.e_ajouter(uExiste, typeOeuvre,  oExiste,  date);
+            }else{
+                message = "ko";
+            }
             
     session.setAttribute("message", message);
     response.sendRedirect("index.jsp");   
