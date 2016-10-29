@@ -19,18 +19,13 @@ and open the template in the editor.
 
     </head>
     <body style="
-                     background-image: url('images/biblioImages.jpg') ;
+                     background-image: url('images/test.jpg') ;
                      background-repeat: no-repeat;
                      background-size: cover;">
         <div class="container-fluid">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <div style="text-align:center;
-                     background-image: url('images/images.jpg') ;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        ">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div style="text-align:center;">
                     <h1 style="margin:0;padding-top:2%;padding-bottom:1%">Bibal Flambeau Vaubourg</h1>
                 </div>
                 <div>
