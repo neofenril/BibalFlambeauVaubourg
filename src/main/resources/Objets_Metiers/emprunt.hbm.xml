@@ -5,13 +5,13 @@
   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="Objets_Metiers.Emprunt" table="emprunt">
+    <class name="Objets_Metiers.Exemplaire" table="exemplaire">
       <id name="id" column="id">
         <generator class="increment" />
       </id>
-      <property name="date_debut" type="date" />
-      <property name="date_fin" type="date" />
-      <many-to-one name="exemplaire" column="idExemplaire" not-null="false"/>
-      <many-to-one name="usager" column="idUsager" not-null="false"/>
+      <property name="date_achat" type="date" />
+      <property name="etat" />
+      <many-to-one name="livre" column="idLivre" not-null="false"/>
+      <many-to-one name="magazine" column="idMagazine" not-null="false"/>
     </class>
 </hibernate-mapping>

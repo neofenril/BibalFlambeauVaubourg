@@ -16,5 +16,6 @@
     <mapping resource="Objets_Metiers/exemplaire.hbm.xml"/>
     <mapping resource="Objets_Metiers/magazine.hbm.xml"/>
     <mapping resource="Objets_Metiers/reservation.hbm.xml"/>
+    <mapping resource="Objets_Metiers/emprunt.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

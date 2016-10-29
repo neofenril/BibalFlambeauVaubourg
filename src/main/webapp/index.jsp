@@ -19,9 +19,9 @@ and open the template in the editor.
 
     </head>
     <body style="
-                     background-image: url('images/test.jpg') ;
-                     background-repeat: no-repeat;
-                     background-size: cover;">
+          background-image: url('images/test.jpg') ;
+          background-repeat: no-repeat;
+          background-size: cover;">
         <div class="container-fluid">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -285,11 +285,18 @@ and open the template in the editor.
             <strong>Données Enregistrées !</strong>
         </div>
         <%
-        } else {
+                } else if (message.equals("ko")) {
         %>
         <div class='alert alert-danger' style='position:fixed;bottom:0px;width:100%;text-align:center;'>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>Informations Incomplètes ou Incorrectes !</strong>
+        </div>
+        <%
+                } else {
+        %>
+        <div class='alert alert-danger' style='position:fixed;bottom:0px;width:100%;text-align:center;'>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong><%= message %></strong>
         </div>
         <%
                 }
