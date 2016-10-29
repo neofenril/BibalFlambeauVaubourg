@@ -18,11 +18,19 @@ and open the template in the editor.
 
 
     </head>
-    <body>
+    <body style="
+                     background-image: url('images/biblioImages.jpg') ;
+                     background-repeat: no-repeat;
+                     background-size: cover;">
         <div class="container-fluid">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-                <div style="text-align:center;background-color:#edb67a;">
+                <div style="text-align:center;
+                     background-image: url('images/images.jpg') ;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        ">
                     <h1 style="margin:0;padding-top:2%;padding-bottom:1%">Bibal Flambeau Vaubourg</h1>
                 </div>
                 <div>
@@ -45,7 +53,7 @@ and open the template in the editor.
                                     <li><a data-toggle="modal" data-target="#addLivre">Ajouter un Livre</a></li>
                                     <li><a data-toggle="modal" data-target="#addMagazine">Ajouter un Magazine</a></li>
                                     <li><a data-toggle="modal" data-target="#addExemplaire">Ajouter un Exemplaire</a></li>
-                                    <li><a href="reservation.jsp">Réservations</a></li>
+                                    <li><a href="ihm_resa_et_emprunt.jsp">Réservations et emprunts</a></li>
                                 </ul>
                             </div><!-- /.navbar-collapse -->
                         </div><!-- /.container-fluid -->
