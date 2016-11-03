@@ -131,26 +131,16 @@ public class Exemplaire {
 
         return nvExemp;
     }
-
-    public boolean estEmprunte() {
-        
+    
+    public void modifEtat(String etat){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        String hql = "SELECT e FROM Emprunt e WHERE e.exemplaire=:exemplaire AND e.date_debut <= :today AND e.date_fin >= :today2 ";
-        Query query = session.createQuery(hql);
-        query.setParameter("exemplaire", this);
-        query.setParameter("today", new Date(), TemporalType.DATE);
-        query.setParameter("today2", new Date(), TemporalType.DATE);
-        List results = query.list();
+        this.setEtat(etat); 
 
+        session.update(this);
+
+        session.getTransaction().commit();
         session.close();
-
-        boolean res = false;
-        if (!results.isEmpty()) {
-            res = true;
-        }
-
-        return res;
     }
 }

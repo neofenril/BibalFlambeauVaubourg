@@ -208,27 +208,23 @@
                                                         <table>
                                                             <tr>
                                                                 <td>
-                                                                    Type Oeuvre :
+                                                                    Identifiant Exemplaire :
                                                                 </td>
                                                                 <td>
-                                                                    Livre <input type="radio" name="typeOeuvre" value="livre" checked="checked" />
-                                                                    Magazine <input type="radio" name="typeOeuvre" value="magazine" />
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    Titre Oeuvre :
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" name="titre" value="" />
+                                                                    <input type="number" name="exemp" value="" />
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    Adresse email Usager :
+                                                                    Etat Exemplaire :
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" name="adress"  />
+                                                                    <select name="etat">
+                                                                        <option value="neuf">neuf</option>
+                                                                        <option value="usé">usé</option>
+                                                                        <option value="abimé">abimé</option>
+                                                                        <option value="détruit">détruit</option>
+                                                                    </select>
                                                                 </td>
                                                             </tr>
                                                         </table>

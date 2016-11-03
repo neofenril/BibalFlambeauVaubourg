@@ -68,8 +68,9 @@
                 } else {
                     resas = Reservation.e_getReservations(eExiste.getMagazine(), "magazine");
                 }
-
-                if (eExiste.estEmprunte()) {
+                
+                Emprunt empConcerne = Emprunt.e_identification(eExiste);
+                if (empConcerne!=null) {
                     insert = false;
                     message = "Exemplaire en cours d'Emprunt";
                 } else if (resas != null && !resas.isEmpty()) {
@@ -91,6 +92,23 @@
             break;
 
         case "delEmpr":
+            int idExemp = Integer.valueOf(request.getParameter("exemp"));
+            String etat = request.getParameter("etat");
+
+            Exemplaire eExisteRetour = Exemplaire.e_identification(idExemp);
+
+            if (eExisteRetour != null && etat != null) {
+                Emprunt emprConcerne = Emprunt.e_identification(eExisteRetour);
+                if (emprConcerne==null) {
+                    message = "Exemplaire non emprunté";
+                } else {
+                    eExisteRetour.modifEtat(etat);
+                    emprConcerne.rendreEmprunt();
+                }
+            } else {
+                message = "ko";
+            }
+
             break;
     }
     session.setAttribute("message", message);
