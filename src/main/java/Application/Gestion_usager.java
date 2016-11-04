@@ -26,6 +26,12 @@ public class Gestion_usager extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String message = e_ajouterUsager(request);
+        request.setAttribute("message", message);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_usager.jsp").forward(request, response);
+    }
+    
+    public static String e_ajouterUsager(HttpServletRequest request){
         String nom = request.getParameter("nom").trim();
         String prenom = request.getParameter("prenom").trim();
         String mail = request.getParameter("mail").trim();
@@ -37,9 +43,8 @@ public class Gestion_usager extends HttpServlet {
         if (isEmail && nom != null && prenom != null && uExiste == null) {
             Usager u = Usager.e_ajouter(nom, prenom, mail);
         } else {
-            message = "ko ";
+            message = "ko";
         }
-        
-        this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_usager.jsp").forward(request, response);
+        return message;
     }
 }

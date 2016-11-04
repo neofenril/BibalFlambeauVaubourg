@@ -106,51 +106,6 @@ and open the template in the editor.
                 <div class="col-md-2"></div>
             </div>
         </div>
-        <div class="modal fade" id="addUser" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Ajouter un Usager</h4>
-                    </div>
-                    <form action="./gestion_usager.jsp" method="POST">
-                        <div class="modal-body">
-                            <table>
-                                <tr>
-                                    <td>
-                                        Nom :
-                                    </td>
-                                    <td>
-                                        <input type="text" name="nom" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Prenom :
-                                    </td>
-                                    <td>
-                                        <input type="text" name="prenom" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Mail :
-                                    </td>
-                                    <td>
-                                        <input type="text" name="mail" value="" />
-                                    </td>
-                                </tr>
-                            </table>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                            <input type="submit" class="btn btn-primary" value="Enregistrer" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
         <div class="modal fade" id="addLivre" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

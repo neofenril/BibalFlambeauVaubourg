@@ -91,6 +91,36 @@
                                 </div>
                             </form>
                         </div>
-                    </div>            
-                    </body>
-                    </html>
+                    </div>
+                    <%
+                        String message = (String) request.getAttribute("message");
+
+                        if (message != null) {
+                            if (message.equals("ok")) {
+                    %>
+                    <div class='alert alert-success' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Données Enregistrées !</strong>
+                    </div>
+                    <%
+                    } else if (message.equals("ko")) {
+                    %>
+                    <div class='alert alert-danger' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Informations Incomplètes ou Incorrectes !</strong>
+                    </div>
+                    <%
+                    } else if (message.equals("")) {
+                    } else {
+                    %>
+                    <div class='alert alert-danger' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong><%= message%></strong>
+                    </div>
+                    <%
+                            }
+                        }
+                    %>
+                </div>
+                </body>
+                </html>

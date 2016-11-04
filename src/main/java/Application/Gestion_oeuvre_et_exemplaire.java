@@ -33,50 +33,13 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
 
         switch (action) {
             case "livre":
-                String titreLivre = request.getParameter("titre");
-                String auteurLivre = request.getParameter("auteur");
-                String dateLivre = request.getParameter("date");
-                String resumeLivre = request.getParameter("resume");
-
-                Livre lExiste = Livre.e_identification(titreLivre);
-
-                if (titreLivre != null && auteurLivre != null && dateLivre != null && resumeLivre != null && lExiste == null) {
-                    Livre l = Livre.e_ajouter(titreLivre, auteurLivre, dateLivre, resumeLivre);
-                } else {
-                    message = "ko";
-                }
+                message = e_ajouterLivre(request);
                 break;
             case "magazine":
-                String titreMagazine = request.getParameter("titre");
-                String auteurMagazine = request.getParameter("auteur");
-                String dateMagazine = request.getParameter("date");
-                String numeroMagazine = request.getParameter("numero");
-                String periodiciteMagazine = request.getParameter("periodicite");
-
-                Magazine mExiste = Magazine.e_identification(titreMagazine);
-
-                if (titreMagazine != null && auteurMagazine != null && dateMagazine != null && numeroMagazine != null && mExiste == null) {
-                    Magazine m = Magazine.e_ajouter(titreMagazine, auteurMagazine, dateMagazine, Integer.valueOf(numeroMagazine), periodiciteMagazine);
-                } else {
-                    message = "ko";
-                }
+                message = e_ajouterMagazine(request);
                 break;
             case "exemplaire":
-                String titreExemp = request.getParameter("titre");
-                String nbExemp = request.getParameter("nb");
-                String dateExemp = request.getParameter("date");
-                String typeOeuvre = request.getParameter("typeOeuvre");
-
-                Oeuvre oExiste = Oeuvre.e_identification(titreExemp, typeOeuvre);
-
-                if (titreExemp != null && nbExemp != null && dateExemp != null && oExiste != null) {
-                    int nb = Integer.valueOf(nbExemp);
-                    for (int i = 0; i < nb; i++) {
-                        Exemplaire e = Exemplaire.e_ajouter(dateExemp, typeOeuvre, oExiste);
-                    }
-                } else {
-                    message = "ko";
-                }
+                message = e_ajouterExemplaire(request);
                 break;
         }
 
@@ -85,4 +48,59 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
         this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_oeuvre_et_exemplaire.jsp").forward(request, response);
     }
 
+    public static String e_ajouterLivre(HttpServletRequest request) {
+        String message = "ok";
+
+        String titreLivre = request.getParameter("titre");
+        String auteurLivre = request.getParameter("auteur");
+        String dateLivre = request.getParameter("date");
+        String resumeLivre = request.getParameter("resume");
+
+        Livre lExiste = Livre.e_identification(titreLivre);
+
+        if (titreLivre != null && auteurLivre != null && dateLivre != null && resumeLivre != null && lExiste == null) {
+            Livre l = Livre.e_ajouter(titreLivre, auteurLivre, dateLivre, resumeLivre);
+        } else {
+            message = "ko";
+        }
+        return message;
+    }
+
+    public static String e_ajouterMagazine(HttpServletRequest request) {
+        String message = "ok";
+        String titreMagazine = request.getParameter("titre");
+        String auteurMagazine = request.getParameter("auteur");
+        String dateMagazine = request.getParameter("date");
+        String numeroMagazine = request.getParameter("numero");
+        String periodiciteMagazine = request.getParameter("periodicite");
+
+        Magazine mExiste = Magazine.e_identification(titreMagazine);
+
+        if (titreMagazine != null && auteurMagazine != null && dateMagazine != null && numeroMagazine != null && mExiste == null) {
+            Magazine m = Magazine.e_ajouter(titreMagazine, auteurMagazine, dateMagazine, Integer.valueOf(numeroMagazine), periodiciteMagazine);
+        } else {
+            message = "ko";
+        }
+        return message;
+    }
+
+    public static String e_ajouterExemplaire(HttpServletRequest request) {
+        String message = "ok";
+        String titreExemp = request.getParameter("titre");
+        String nbExemp = request.getParameter("nb");
+        String dateExemp = request.getParameter("date");
+        String typeOeuvre = request.getParameter("typeOeuvre");
+
+        Oeuvre oExiste = Oeuvre.e_identification(titreExemp, typeOeuvre);
+
+        if (titreExemp != null && nbExemp != null && dateExemp != null && oExiste != null) {
+            int nb = Integer.valueOf(nbExemp);
+            for (int i = 0; i < nb; i++) {
+                Exemplaire e = Exemplaire.e_ajouter(dateExemp, typeOeuvre, oExiste);
+            }
+        } else {
+            message = "ko";
+        }
+        return message;
+    }
 }
