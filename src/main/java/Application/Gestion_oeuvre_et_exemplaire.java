@@ -10,6 +10,8 @@ import Objets_Metiers.Livre;
 import Objets_Metiers.Magazine;
 import Objets_Metiers.Oeuvre;
 import java.io.IOException;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +25,17 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        
+        
+        ArrayList exemplaireAbime = new ArrayList();
+ 
+        exemplaireAbime = Exemplaire.e_listeMauvaisEtat();
+        
+        request.setAttribute("exemplaireAbime", exemplaireAbime);
+        
         /* Transmission de la paire d'objets request/response à notre JSP */
         this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_oeuvre_et_exemplaire.jsp").forward(request, response);
+        
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

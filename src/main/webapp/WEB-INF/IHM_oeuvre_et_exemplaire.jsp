@@ -51,8 +51,8 @@
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
                                         <li><a href="<c:url value="/usager"/>">Ajouter un Usager</a></li>
-                                <li><a href="<c:url value="/oeuvre_et_exemplaire"/>">Oeuvres et exemplaires</a></li>
-                                <li><a href="<c:url value="/resa_et_emprunt"/>">Réservations et emprunts</a></li>
+                                        <li><a href="<c:url value="/oeuvre_et_exemplaire"/>">Oeuvres et exemplaires</a></li>
+                                        <li><a href="<c:url value="/resa_et_emprunt"/>">Réservations et emprunts</a></li>
                                     </ul>
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->
@@ -70,11 +70,11 @@
                     </div>
                     <div id="collapse1" class="panel-collapse collapse">
                         <div class="container" style="margin-top: 15px;">
-                            <div class="panel-group" id="accordionResa" style="max-width: 97%;">
+                            <div class="panel-group" id="accordionOeuvre" style="max-width: 97%;">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordionResa" href="#collapseResa1">Ajouter un livre</a>
+                                            <a data-toggle="collapse" data-parent="#accordionOeuvre" href="#collapseResa1">Ajouter un livre</a>
                                         </h4>
                                     </div>
                                     <div id="collapseResa1" class="panel-collapse collapse in">
@@ -128,7 +128,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordionResa" href="#collapseResa2">Ajouter un magazine</a>
+                                            <a data-toggle="collapse" data-parent="#accordionOeuvre" href="#collapseResa2">Ajouter un magazine</a>
                                         </h4>
                                     </div>
                                     <div id="collapseResa2" class="panel-collapse collapse">
@@ -197,65 +197,106 @@
                             <a data-toggle="collapse" href="#collapse2">Exemplaires</a>
                         </h4>
                     </div>
-                        <div id="collapse2" class="panel-collapse collapse">
-                            <div class="container" style="margin-top: 15px;">
-                                <div class="panel-group" id="accordionEmpr" style="max-width: 97%;">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordionEmpr" href="#collapseEmpr1">Ajouter des exemplaires</a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapseEmpr1" class="panel-collapse collapse in" >
-                                            <div class="panel-body">
-                                                <form action="<c:url value="/oeuvre_et_exemplaire"/>" method="POST">
-                                                    <div class="modal-body">
-                                                        <table>
-                                                            <tr>
-                                                                <td>
-                                                                    Type Oeuvre :
-                                                                </td>
-                                                                <td>
-                                                                    Livre <input type="radio" name="typeOeuvre" value="livre" checked="checked" />
-                                                                    Magazine <input type="radio" name="typeOeuvre" value="magazine" />
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    Titre Oeuvre :
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" name="titre" value="" />
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    Nombre :
-                                                                </td>
-                                                                <td>
-                                                                    <input type="number" name="nb" value="1" min='1'/>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    Date Achat :
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" id='datePickerEx' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                                        <input type="hidden" name="gestion_oeuvre" value="exemplaire" />
-                                                        <input type="submit" class="btn btn-primary" value="Enregistrer" />
-                                                    </div>
-                                                </form>
-                                            </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="container" style="margin-top: 15px;">
+                            <div class="panel-group" id="accordionExemp" style="max-width: 97%;">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordionExemp" href="#collapseEmpr1">Ajouter des exemplaires</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseEmpr1" class="panel-collapse collapse" >
+                                        <div class="panel-body">
+                                            <form action="<c:url value="/oeuvre_et_exemplaire"/>" method="POST">
+                                                <div class="modal-body">
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                Type Oeuvre :
+                                                            </td>
+                                                            <td>
+                                                                Livre <input type="radio" name="typeOeuvre" value="livre" checked="checked" />
+                                                                Magazine <input type="radio" name="typeOeuvre" value="magazine" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                Titre Oeuvre :
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="titre" value="" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                Nombre :
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" name="nb" value="1" min='1'/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                Date Achat :
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id='datePickerEx' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                    <input type="hidden" name="gestion_oeuvre" value="exemplaire" />
+                                                    <input type="submit" class="btn btn-primary" value="Enregistrer" />
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordionExemp" href="#collapseExemp2">Tableau Exemplaire Abimés</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseExemp2" class="panel-collapse collapse in" >
+                                        <div class="panel-body">
+
+                                            <div class="table-responsive">
+
+
+                                                <table id="mytable" class="table table-bordred table-striped">
+
+                                                    <thead>
+
+                                                    <th><input type="checkbox" id="checkall" /></th>
+                                                    <th>Etat Exemplaire</th>
+                                                    <th>Nom Oeuvre</th>
+
+                                               
+
+                                                    <th>Delete</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <c:forEach items="${exemplaireAbime}" var="exemplaireAbime">
+                                                            <tr>
+                                                                <td><input type="checkbox" class="checkthis" /></td>
+                                                                <td>${exemplaireAbime.etat}</td>
+                                                                <td>SaisPasCommentFaire</td>
+                                                                <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>

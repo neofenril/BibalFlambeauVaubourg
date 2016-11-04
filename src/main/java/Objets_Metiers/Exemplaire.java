@@ -2,6 +2,7 @@ package Objets_Metiers;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.TemporalType;
@@ -144,17 +145,17 @@ public class Exemplaire {
         session.close();
     }
         
-    public List<Exemplaire> listMauvaisEtat (){
+    public static ArrayList<Exemplaire> e_listeMauvaisEtat (){
         
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
-        String hql = "SELECT * FROM Exemplaire WHERE etat LIKE LOWER(abime)";
+        String hql = "SELECT e FROM Exemplaire e WHERE e.etat LIKE LOWER('abime')";
         Query query = session.createQuery(hql);
-        List results = query.list();
+        ArrayList results = new ArrayList(query.list());
 
         session.close();
-
+        
         
 
         return results;
