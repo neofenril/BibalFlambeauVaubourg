@@ -13,6 +13,7 @@
         <servlet-name>Gestion_usager</servlet-name>
         <servlet-class>Application.Gestion_usager</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>Gestion_resa_et_emprunt</servlet-name>
         <url-pattern>/resa_et_emprunt</url-pattern>

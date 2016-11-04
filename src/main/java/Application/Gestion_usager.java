@@ -22,7 +22,7 @@ public class Gestion_usager extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         /* Transmission de la paire d'objets request/response à notre JSP */
-        this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_resa_et_emprunt.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_usager.jsp").forward(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,5 +39,7 @@ public class Gestion_usager extends HttpServlet {
         } else {
             message = "ko ";
         }
+        
+        this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_usager.jsp").forward(request, response);
     }
 }

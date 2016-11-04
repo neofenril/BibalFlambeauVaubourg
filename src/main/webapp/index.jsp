@@ -50,7 +50,7 @@ and open the template in the editor.
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
-                                        <li><a data-toggle="modal" data-target="#addUser">Ajouter un Usager</a></li>
+                                        <li><a href="<c:url value="/usager"/>">Ajouter un Usager</a></li>
                                         <li><a data-toggle="modal" data-target="#addLivre">Ajouter un Livre</a></li>
                                         <li><a data-toggle="modal" data-target="#addMagazine">Ajouter un Magazine</a></li>
                                         <li><a data-toggle="modal" data-target="#addExemplaire">Ajouter un Exemplaire</a></li>
@@ -76,16 +76,6 @@ and open the template in the editor.
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
                             <%!
                                 List<Emprunt> empruntDateDepassee = Emprunt.e_empruntDateDepassee();
                                 String titre;
