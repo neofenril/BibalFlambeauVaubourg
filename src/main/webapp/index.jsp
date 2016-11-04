@@ -1,6 +1,7 @@
 <%@page import="java.util.Date"%>
 <%@page import="Objets_Metiers.Emprunt"%>
 <%@page import="java.util.List"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <!--
@@ -53,7 +54,7 @@ and open the template in the editor.
                                         <li><a data-toggle="modal" data-target="#addLivre">Ajouter un Livre</a></li>
                                         <li><a data-toggle="modal" data-target="#addMagazine">Ajouter un Magazine</a></li>
                                         <li><a data-toggle="modal" data-target="#addExemplaire">Ajouter un Exemplaire</a></li>
-                                        <li><a href="ihm_resa_et_emprunt.jsp">Réservations et emprunts</a></li>
+                                        <li><a href="<c:url value="/resa_et_emprunt"/>">Réservations et emprunts</a></li>
                                     </ul>
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->
@@ -64,7 +65,8 @@ and open the template in the editor.
             </div>
             <div class="row">
                 <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="col-md-8" style="text-align:center;">
+                    <h3>Emprunt en Retard</h3>
                     <table style="width:100%;text-align:center;">
                         <thead>
                             <tr>
@@ -85,16 +87,16 @@ and open the template in the editor.
                                 <td></td>
                             </tr>
                             <%!
-                                List<Emprunt> empruntDateDepassee= Emprunt.e_empruntDateDepassee();
+                                List<Emprunt> empruntDateDepassee = Emprunt.e_empruntDateDepassee();
                                 String titre;
                                 String mail;
                                 Date date;
                             %>
                             <%
-                                for(Emprunt e : empruntDateDepassee){
-                                    if(e.getExemplaire().getLivre()==null){
+                                for (Emprunt e : empruntDateDepassee) {
+                                    if (e.getExemplaire().getLivre() == null) {
                                         titre = e.getExemplaire().getMagazine().getTitre();
-                                    }else{
+                                    } else {
                                         titre = e.getExemplaire().getLivre().getTitre();
                                     }
                                     mail = e.getUsager().getMail();
@@ -349,7 +351,7 @@ and open the template in the editor.
             <strong>Informations Incomplètes ou Incorrectes !</strong>
         </div>
         <%
-        } else if(message.equals("")){
+        } else if (message.equals("")) {
         } else {
         %>
         <div class='alert alert-danger' style='position:fixed;bottom:0px;width:100%;text-align:center;'>

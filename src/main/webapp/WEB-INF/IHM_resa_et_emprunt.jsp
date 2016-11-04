@@ -8,6 +8,7 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,7 +40,8 @@
                                         </h4>
                                     </div>
                                     <div id="collapseResa1" class="panel-collapse collapse in">
-                                        <div class="panel-body"><form action="./gestion_resa_et_emprunt.jsp" method="POST">
+                                        <div class="panel-body">
+                                            <form action="<c:url value="/resa_et_emprunt"/>" method="POST">
                                                 <div class="modal-body">
                                                     <table>
                                                         <tr>
@@ -84,7 +86,7 @@
                                         </h4>
                                     </div>
                                     <div id="collapseResa2" class="panel-collapse collapse">
-                                        <div class="panel-body"><form action="./gestion_resa_et_emprunt.jsp" method="POST">
+                                        <div class="panel-body"><form action="<c:url value="/resa_et_emprunt"/>" method="POST">
                                                 <div class="modal-body">
                                                     <table>
                                                         <tr>
@@ -141,7 +143,7 @@
                                             </h4>
                                         </div>
                                         <div id="collapseEmpr1" class="panel-collapse collapse in">
-                                            <div class="panel-body"><form action="./gestion_resa_et_emprunt.jsp" method="POST">
+                                            <div class="panel-body"><form action="<c:url value="/resa_et_emprunt"/>" method="POST">
                                                     <div class="modal-body">
                                                         <table>
                                                             <tr>
@@ -203,7 +205,7 @@
                                             </h4>
                                         </div>
                                         <div id="collapseEmpr2" class="panel-collapse collapse">
-                                            <div class="panel-body"><form action="./gestion_resa_et_emprunt.jsp" method="POST">
+                                            <div class="panel-body"><form action="<c:url value="/resa_et_emprunt"/>" method="POST">
                                                     <div class="modal-body">
                                                         <table>
                                                             <tr>
@@ -242,7 +244,38 @@
                         </div>
                     </div>
                 </div>
+
+                <%
+                    String message = (String) request.getAttribute("message");
+
+                    if (message != null) {
+                        if (message.equals("ok")) {
+                %>
+                <div class='alert alert-success' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Données Enregistrées !</strong>
+                </div>
+                <%
+                } else if (message.equals("ko")) {
+                %>
+                <div class='alert alert-danger' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Informations Incomplètes ou Incorrectes !</strong>
+                </div>
+                <%
+                } else if (message.equals("")) {
+                } else {
+                %>
+                <div class='alert alert-danger' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong><%= message%></strong>
+                </div>
+                <%
+                        }
+                    }
+                %>
             </div>
+
 
 
 
