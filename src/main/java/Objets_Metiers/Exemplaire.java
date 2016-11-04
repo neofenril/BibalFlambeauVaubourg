@@ -143,4 +143,20 @@ public class Exemplaire {
         session.getTransaction().commit();
         session.close();
     }
+        
+    public List<Exemplaire> listMauvaisEtat (){
+        
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        String hql = "SELECT * FROM Exemplaire WHERE etat LIKE LOWER(abime)";
+        Query query = session.createQuery(hql);
+        List results = query.list();
+
+        session.close();
+
+        
+
+        return results;
+    }
 }
