@@ -68,9 +68,9 @@
                 } else {
                     resas = Reservation.e_getReservations(eExiste.getMagazine(), "magazine");
                 }
-                
+
                 Emprunt empConcerne = Emprunt.e_identification(eExiste);
-                if (empConcerne!=null) {
+                if (empConcerne != null) {
                     insert = false;
                     message = "Exemplaire en cours d'Emprunt";
                 } else if (resas != null && !resas.isEmpty()) {
@@ -99,7 +99,7 @@
 
             if (eExisteRetour != null && etat != null) {
                 Emprunt emprConcerne = Emprunt.e_identification(eExisteRetour);
-                if (emprConcerne==null) {
+                if (emprConcerne == null) {
                     message = "Exemplaire non emprunté";
                 } else {
                     eExisteRetour.modifEtat(etat);
@@ -108,11 +108,12 @@
             } else {
                 message = "ko";
             }
-
+            break;
+        default:
+            message = "";
             break;
     }
+    
     session.setAttribute("message", message);
     response.sendRedirect("index.jsp");
-
-
 %>

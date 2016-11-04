@@ -1,3 +1,7 @@
+<%@page import="java.util.Date"%>
+<%@page import="Objets_Metiers.Emprunt"%>
+<%@page import="java.util.List"%>
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -23,39 +27,92 @@ and open the template in the editor.
           background-repeat: no-repeat;
           background-size: cover;">
         <div class="container-fluid">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div style="text-align:center;">
-                    <h1 style="margin:0;padding-top:2%;padding-bottom:1%">Bibal Flambeau Vaubourg</h1>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div style="text-align:center;">
+                        <h1 style="margin:0;padding-top:2%;padding-bottom:1%">Bibal Flambeau Vaubourg</h1>
+                    </div>
+                    <div>
+                        <nav class="navbar navbar-inverse">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand" href="index.jsp">Bibal</a>
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+                                        <li><a data-toggle="modal" data-target="#addUser">Ajouter un Usager</a></li>
+                                        <li><a data-toggle="modal" data-target="#addLivre">Ajouter un Livre</a></li>
+                                        <li><a data-toggle="modal" data-target="#addMagazine">Ajouter un Magazine</a></li>
+                                        <li><a data-toggle="modal" data-target="#addExemplaire">Ajouter un Exemplaire</a></li>
+                                        <li><a href="ihm_resa_et_emprunt.jsp">Réservations et emprunts</a></li>
+                                    </ul>
+                                </div><!-- /.navbar-collapse -->
+                            </div><!-- /.container-fluid -->
+                        </nav>
+                    </div>
                 </div>
-                <div>
-                    <nav class="navbar navbar-inverse">
-                        <div class="container-fluid">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand" href="index.jsp">Bibal</a>
-                            </div>
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav">
-                                    <li><a data-toggle="modal" data-target="#addUser">Ajouter un Usager</a></li>
-                                    <li><a data-toggle="modal" data-target="#addLivre">Ajouter un Livre</a></li>
-                                    <li><a data-toggle="modal" data-target="#addMagazine">Ajouter un Magazine</a></li>
-                                    <li><a data-toggle="modal" data-target="#addExemplaire">Ajouter un Exemplaire</a></li>
-                                    <li><a href="ihm_resa_et_emprunt.jsp">Réservations et emprunts</a></li>
-                                </ul>
-                            </div><!-- /.navbar-collapse -->
-                        </div><!-- /.container-fluid -->
-                    </nav>
-                </div>
+                <div class="col-md-2"></div>
             </div>
-            <div class="col-md-1"></div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <table style="width:100%;text-align:center;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">Titre Oeuvre</th>
+                                <th style="text-align:center;">Mail Usager</th>
+                                <th style="text-align:center;">Date Retour Prévue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <%!
+                                List<Emprunt> empruntDateDepassee= Emprunt.e_empruntDateDepassee();
+                                String titre;
+                                String mail;
+                                Date date;
+                            %>
+                            <%
+                                for(Emprunt e : empruntDateDepassee){
+                                    if(e.getExemplaire().getLivre()==null){
+                                        titre = e.getExemplaire().getMagazine().getTitre();
+                                    }else{
+                                        titre = e.getExemplaire().getLivre().getTitre();
+                                    }
+                                    mail = e.getUsager().getMail();
+                                    date = e.getDate_fin_prevue();
+                            %>
+                            <tr>
+                                <td><%=titre%></td>
+                                <td><%=mail%></td>
+                                <td><%=date%></td>
+                            </tr>  
+                            <%
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
         </div>
         <div class="modal fade" id="addUser" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -285,18 +342,19 @@ and open the template in the editor.
             <strong>Données Enregistrées !</strong>
         </div>
         <%
-                } else if (message.equals("ko")) {
+        } else if (message.equals("ko")) {
         %>
         <div class='alert alert-danger' style='position:fixed;bottom:0px;width:100%;text-align:center;'>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>Informations Incomplètes ou Incorrectes !</strong>
         </div>
         <%
-                } else {
+        } else if(message.equals("")){
+        } else {
         %>
         <div class='alert alert-danger' style='position:fixed;bottom:0px;width:100%;text-align:center;'>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong><%= message %></strong>
+            <strong><%= message%></strong>
         </div>
         <%
                 }

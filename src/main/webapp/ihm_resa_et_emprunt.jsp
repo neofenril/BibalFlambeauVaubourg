@@ -221,9 +221,8 @@
                                                                 <td>
                                                                     <select name="etat">
                                                                         <option value="neuf">neuf</option>
-                                                                        <option value="usé">usé</option>
-                                                                        <option value="abimé">abimé</option>
-                                                                        <option value="détruit">détruit</option>
+                                                                        <option value="usé">use</option>
+                                                                        <option value="abimé">abime</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>

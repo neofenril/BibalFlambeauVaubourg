@@ -97,7 +97,6 @@ public class Emprunt {
 
     
     public static Emprunt e_identification(Exemplaire e) {
-        
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
@@ -131,5 +130,16 @@ public class Emprunt {
 
         session.getTransaction().commit();
         session.close();
+    }
+    
+    public static List<Emprunt> e_empruntDateDepassee(){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        String hql = "SELECT e FROM Emprunt e WHERE e.date_fin_prevue<=NOW() AND e.date_fin_effective is null";
+        Query query = session.createQuery(hql);
+        List results = query.list();
+        
+        return results;
     }
 }
