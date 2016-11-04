@@ -27,12 +27,12 @@ and open the template in the editor.
           background-image: url('images/test.jpg') ;
           background-repeat: no-repeat;
           background-size: cover;">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="col-md-0"></div>
+                <div class="col-md-12">
                     <div style="text-align:center;">
-                        <h1 style="margin:0;padding-top:2%;padding-bottom:1%">Bibal Flambeau Vaubourg</h1>
+                        <h1 style="margin:0;padding-top:2%;padding-bottom:1%">Bibal FLAMBEAU VAUBOURG</h1>
                     </div>
                     <div>
                         <nav class="navbar navbar-inverse">
@@ -104,178 +104,9 @@ and open the template in the editor.
                 <div class="col-md-2"></div>
             </div>
         </div>
-        <div class="modal fade" id="addLivre" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Ajouter un Livre</h4>
-                    </div>
-                    <form action="./gestion_oeuvre_et_exemplaire.jsp" method="POST">
-                        <div class="modal-body">
-                            <table>
-                                <tr>
-                                    <td>
-                                        Titre :
-                                    </td>
-                                    <td>
-                                        <input type="text" name="titre" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Auteur :
-                                    </td>
-                                    <td>
-                                        <input type="text" name="auteur" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Date Edition :  
-                                    </td>
-                                    <td>
-
-                                        <input type="text" id='datePickerLivre' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
-
-
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Resume :
-                                    </td>
-                                    <td>
-                                        <input type="text" name="resume" value="" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                            <input type="hidden" name="gestion_oeuvre" value="livre" />
-                            <input type="submit" class="btn btn-primary" value="Enregistrer" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="addMagazine" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Ajouter un Magazine</h4>
-                    </div>
-                    <form action="./gestion_oeuvre_et_exemplaire.jsp" method="POST">
-                        <div class="modal-body">
-                            <table>
-                                <tr>
-                                    <td>
-                                        Titre :
-                                    </td>
-                                    <td>
-                                        <input type="text" name="titre" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Auteur :
-                                    </td>
-                                    <td>
-                                        <input type="text" name="auteur" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Date Parution :
-                                    </td>
-                                    <td>
-                                        <input type="text" id='datePickerMag' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Numero :
-                                    </td>
-                                    <td>
-                                        <input type="number" name="numero" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Periodicite :
-                                    </td>
-                                    <td>
-                                        <input type="text" name="periodicite" value="" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                            <input type="hidden" name="gestion_oeuvre" value="magazine" />
-                            <input type="submit" class="btn btn-primary" value="Enregistrer" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="addExemplaire" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Ajouter des Exemplaires</h4>
-                    </div>
-                    <form action="./gestion_oeuvre_et_exemplaire.jsp" method="POST">
-                        <div class="modal-body">
-                            <table>
-                                <tr>
-                                    <td>
-                                        Type Oeuvre :
-                                    </td>
-                                    <td>
-                                        Livre <input type="radio" name="typeOeuvre" value="livre" checked="checked" />
-                                        Magazine <input type="radio" name="typeOeuvre" value="magazine" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Titre Oeuvre :
-                                    </td>
-                                    <td>
-                                        <input type="text" name="titre" value="" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Nombre :
-                                    </td>
-                                    <td>
-                                        <input type="number" name="nb" value="1" min='1'/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Date Achat :
-                                    </td>
-                                    <td>
-                                        <input type="text" id='datePickerEx' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                            <input type="hidden" name="gestion_oeuvre" value="exemplaire" />
-                            <input type="submit" class="btn btn-primary" value="Enregistrer" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        
+        
+        
         <%
             String message = (String) session.getAttribute("message");
 
