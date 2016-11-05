@@ -61,6 +61,7 @@
                 </div>
                 <div class="col-md-2"></div>
             </div>
+
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -197,7 +198,7 @@
                             <a data-toggle="collapse" href="#collapse2">Exemplaires</a>
                         </h4>
                     </div>
-                    <div id="collapse2" class="panel-collapse collapse">
+                    <div id="collapse2" class="panel-collapse collapse in">
                         <div class="container" style="margin-top: 15px;">
                             <div class="panel-group" id="accordionExemp" style="max-width: 97%;">
                                 <div class="panel panel-default">
@@ -264,29 +265,23 @@
                                     </div>
                                     <div id="collapseExemp2" class="panel-collapse collapse in" >
                                         <div class="panel-body">
-
                                             <div class="table-responsive">
-
-
                                                 <table id="mytable" class="table table-bordred table-striped">
 
                                                     <thead>
-
-                                                    <th><input type="checkbox" id="checkall" /></th>
                                                     <th>Etat Exemplaire</th>
                                                     <th>Nom Oeuvre</th>
-
-                                               
-
-                                                    <th>Delete</th>
+                                                    <th></th>
                                                     </thead>
                                                     <tbody>
-                                                        <c:forEach items="${exemplaireAbime}" var="exemplaireAbime">
+                                                        <c:forEach var="eA" items="${exemplaireAbime}" >
                                                             <tr>
                                                                 <td><input type="checkbox" class="checkthis" /></td>
-                                                                <td>${exemplaireAbime.etat}</td>
-                                                                <td>SaisPasCommentFaire</td>
-                                                                <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                                                                <td>${eA.getEtat()}</td>
+                                                                <td>${eA.getLivre().getTitre()}</td>
+                                                                <td>
+                                                                    <a href="oeuvre_et_exemplaire?action=delete&exemplaireId=<c:out value="${eA.getId()}"/>">Supprimer</a>
+                                                                </td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>
@@ -294,9 +289,7 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>

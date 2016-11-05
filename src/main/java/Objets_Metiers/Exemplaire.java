@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.persistence.TemporalType;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateUtil;
 
@@ -21,6 +22,11 @@ public class Exemplaire {
     public Exemplaire() {
     }
 
+    public String getTitre(){
+        String s;
+        s = this.magazine.getTitre();
+        return s;
+    }
     public int getId() {
         return id;
     }
@@ -154,10 +160,27 @@ public class Exemplaire {
         Query query = session.createQuery(hql);
         ArrayList results = new ArrayList(query.list());
 
-        session.close();
+        
         
         
 
         return results;
+    }
+    
+    public static void e_deleteAction(int id) {
+        
+        
+        
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        
+        Exemplaire exemplaire;
+        
+        exemplaire = (Exemplaire)session.load(Exemplaire.class,id);
+        session.delete(exemplaire);
+        
+        session.getTransaction().commit();
+        session.close();
+        
     }
 }

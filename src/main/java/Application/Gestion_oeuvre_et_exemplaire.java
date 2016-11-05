@@ -25,7 +25,13 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String action = request.getParameter("action");
         
+        if (action != null && action.equalsIgnoreCase("delete")){
+            
+            int userId = Integer.parseInt(request.getParameter("exemplaireId"));
+            e_deleteAction(userId);
+        }
         
         ArrayList exemplaireAbime = new ArrayList();
  
@@ -52,6 +58,7 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
             case "exemplaire":
                 message = e_ajouterExemplaire(request);
                 break;
+            
         }
 
         request.setAttribute("message", message);
@@ -113,5 +120,11 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
             message = "ko";
         }
         return message;
+    }
+    
+    public static void e_deleteAction(int id) {
+        
+        Exemplaire.e_deleteAction(id);
+        
     }
 }
