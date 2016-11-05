@@ -155,9 +155,13 @@ public class Exemplaire {
         
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-
-        String hql = "SELECT e FROM Exemplaire e WHERE e.etat LIKE LOWER('abime')";
+        
+        Calendar dateAchat = Calendar.getInstance();
+        dateAchat.add(Calendar.YEAR, -2);
+        Date dateAchatLimite = dateAchat.getTime();
+        String hql = "SELECT e FROM Exemplaire e WHERE e.etat LIKE LOWER('abime') OR e.date_achat < :dateAchatLimite ";
         Query query = session.createQuery(hql);
+        query.setParameter("dateAchatLimite", dateAchatLimite);
         ArrayList results = new ArrayList(query.list());
 
         

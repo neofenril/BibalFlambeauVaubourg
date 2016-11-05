@@ -260,7 +260,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordionExemp" href="#collapseExemp2">Tableau Exemplaire Abimés</a>
+                                            <a data-toggle="collapse" data-parent="#accordionExemp" href="#collapseExemp2">Tableau Exemplaire Abimés ou trop anciens</a>
                                         </h4>
                                     </div>
                                     <div id="collapseExemp2" class="panel-collapse collapse in" >
@@ -269,16 +269,17 @@
                                                 <table id="mytable" class="table table-bordred table-striped">
 
                                                     <thead>
-                                                    <th>Etat Exemplaire</th>
                                                     <th>Nom Oeuvre</th>
+                                                    <th>Etat Exemplaire</th>
+                                                    <th>Date Exemplaire</th>
                                                     <th></th>
                                                     </thead>
                                                     <tbody>
                                                         <c:forEach var="eA" items="${exemplaireAbime}" >
                                                             <tr>
-                                                                <td><input type="checkbox" class="checkthis" /></td>
-                                                                <td>${eA.getEtat()}</td>
                                                                 <td>${eA.getLivre().getTitre()}</td>
+                                                                <td>${eA.getEtat()}</td>
+                                                                <td>${eA.getDate_achat()}</td>
                                                                 <td>
                                                                     <a href="oeuvre_et_exemplaire?action=delete&exemplaireId=<c:out value="${eA.getId()}"/>">Supprimer</a>
                                                                 </td>
