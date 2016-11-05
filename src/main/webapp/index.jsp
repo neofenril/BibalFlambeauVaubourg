@@ -63,7 +63,7 @@ and open the template in the editor.
             </div>
             <div class="row">
                 <div class="col-md-2"></div>
-                <div class="col-md-8" style="text-align:center;">
+                <div class="col-md-8" style="text-align:center;background-color:white;padding-bottom:2%">
                     <h3>Emprunt en Retard</h3>
                     <table style="width:100%;text-align:center;">
                         <thead>
