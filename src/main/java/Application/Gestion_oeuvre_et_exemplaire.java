@@ -58,7 +58,9 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
             case "exemplaire":
                 message = e_ajouterExemplaire(request);
                 break;
-            
+            case "delOeuvre":
+                message = e_supprimerOeuvre(request);
+                break;
         }
 
         request.setAttribute("message", message);
@@ -126,5 +128,25 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
         
         Exemplaire.e_deleteAction(id);
         
+    }
+
+    private String e_supprimerOeuvre(HttpServletRequest request) {
+        String message = "ok";
+        String titreExemp = request.getParameter("titre");
+        String typeOeuvre = request.getParameter("typeOeuvre");
+        
+        
+        Oeuvre oExiste = Oeuvre.e_identification(titreExemp, typeOeuvre);
+        Exemplaire eExiste = Exemplaire.e_identification(oExiste);
+        if(oExiste!=null && eExiste==null)
+        {
+            Oeuvre.e_supprimer(oExiste, typeOeuvre);
+        }
+        else
+        {
+            message="ko";
+        }
+        
+        return message;
     }
 }

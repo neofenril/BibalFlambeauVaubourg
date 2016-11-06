@@ -59,8 +59,13 @@ public class Magazine extends Oeuvre {
         return m;
     }
 
-    public void e_supprimer(String titre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static void e_supprimer(Oeuvre o) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.delete(o);
+        session.getTransaction().commit();
+        session.close();
+        
     }
     
     public static Magazine e_ajouter(String titre, String auteur, String date, int numero, String periodicite) {

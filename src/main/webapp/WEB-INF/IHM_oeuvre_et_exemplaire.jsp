@@ -188,105 +188,43 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse2">Exemplaires</a>
-                        </h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse in">
-                        <div class="container" style="margin-top: 15px;">
-                            <div class="panel-group" id="accordionExemp" style="max-width: 97%;">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordionExemp" href="#collapseEmpr1">Ajouter des exemplaires</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseEmpr1" class="panel-collapse collapse" >
-                                        <div class="panel-body">
-                                            <form action="<c:url value="/oeuvre_et_exemplaire"/>" method="POST">
-                                                <div class="modal-body">
-                                                    <table>
-                                                        <tr>
-                                                            <td>
-                                                                Type Oeuvre :
-                                                            </td>
-                                                            <td>
-                                                                Livre <input type="radio" name="typeOeuvre" value="livre" checked="checked" />
-                                                                Magazine <input type="radio" name="typeOeuvre" value="magazine" />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Titre Oeuvre :
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" name="titre" value="" />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Nombre :
-                                                            </td>
-                                                            <td>
-                                                                <input type="number" name="nb" value="1" min='1'/>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Date Achat :
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id='datePickerEx' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                                    <input type="hidden" name="gestion_oeuvre" value="exemplaire" />
-                                                    <input type="submit" class="btn btn-primary" value="Enregistrer" />
-                                                </div>
-                                            </form>
+                                <div class="panel-group" id="accordionOeuvre" style="max-width: 97%;">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordionOeuvre" href="#suppr1">Supprimer Oeuvre</a>
+                                            </h4>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordionExemp" href="#collapseExemp2">Tableau Exemplaire Abimés ou trop anciens</a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseExemp2" class="panel-collapse collapse in" >
-                                        <div class="panel-body">
-                                            <div class="table-responsive">
-                                                <table id="mytable" class="table table-bordred table-striped">
-
-                                                    <thead>
-                                                    <th>Nom Oeuvre</th>
-                                                    <th>Etat Exemplaire</th>
-                                                    <th>Date Exemplaire</th>
-                                                    <th></th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <c:forEach var="eA" items="${exemplaireAbime}" >
+                                        <div id="suppr1" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <form action="<c:url value="/oeuvre_et_exemplaire"/>" method="POST">
+                                                    <div class="modal-body">
+                                                        <table>
                                                             <tr>
-                                                                <td>${eA.getLivre().getTitre()}</td>
-                                                                <td>${eA.getEtat()}</td>
-                                                                <td>${eA.getDate_achat()}</td>
                                                                 <td>
-                                                                    <a href="oeuvre_et_exemplaire?action=delete&exemplaireId=<c:out value="${eA.getId()}"/>">Supprimer</a>
+                                                                    Titre :
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" name="titre" value="" />
                                                                 </td>
                                                             </tr>
-                                                        </c:forEach>
-                                                    </tbody>
-                                                </table>
+                                                            <tr>
+                                                                <td>
+                                                                    Type Oeuvre :
+                                                                </td>
+                                                                <td>
+                                                                    Livre <input type="radio" name="typeOeuvre" value="livre" checked="checked" />
+                                                                    Magazine <input type="radio" name="typeOeuvre" value="magazine" />
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                        <input type="hidden" name="gestion_oeuvre" value="delOeuvre" />
+                                                        <input type="submit" class="btn btn-primary" value="Enregistrer" />
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -294,54 +232,156 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse2">Exemplaires</a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse in">
+                            <div class="container" style="margin-top: 15px;">
+                                <div class="panel-group" id="accordionExemp" style="max-width: 97%;">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordionExemp" href="#collapseEmpr1">Ajouter des exemplaires</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseEmpr1" class="panel-collapse collapse" >
+                                            <div class="panel-body">
+                                                <form action="<c:url value="/oeuvre_et_exemplaire"/>" method="POST">
+                                                    <div class="modal-body">
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    Type Oeuvre :
+                                                                </td>
+                                                                <td>
+                                                                    Livre <input type="radio" name="typeOeuvre" value="livre" checked="checked" />
+                                                                    Magazine <input type="radio" name="typeOeuvre" value="magazine" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    Titre Oeuvre :
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" name="titre" value="" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    Nombre :
+                                                                </td>
+                                                                <td>
+                                                                    <input type="number" name="nb" value="1" min='1'/>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    Date Achat :
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" id='datePickerEx' name="date"  placeholder="Selectionnez date" aria-describedby="basic-addon1">
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                        <input type="hidden" name="gestion_oeuvre" value="exemplaire" />
+                                                        <input type="submit" class="btn btn-primary" value="Enregistrer" />
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                <%
-                    String message = (String) request.getAttribute("message");
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordionExemp" href="#collapseExemp2">Tableau Exemplaire Abimés ou trop anciens</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseExemp2" class="panel-collapse collapse" >
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <table id="mytable" class="table table-bordred table-striped">
 
-                    if (message != null) {
-                        if (message.equals("ok")) {
-                %>
-                <div class='alert alert-success' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Données Enregistrées !</strong>
-                </div>
-                <%
-                } else if (message.equals("ko")) {
-                %>
-                <div class='alert alert-danger' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Informations Incomplètes ou Incorrectes !</strong>
-                </div>
-                <%
-                } else if (message.equals("")) {
-                } else {
-                %>
-                <div class='alert alert-danger' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong><%= message%></strong>
-                </div>
-                <%
+                                                        <thead>
+                                                        <th>Nom Oeuvre</th>
+                                                        <th>Etat Exemplaire</th>
+                                                        <th>Date Exemplaire</th>
+                                                        <th></th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <c:forEach var="eA" items="${exemplaireAbime}" >
+                                                                <tr>
+                                                                    <td>${eA.getLivre().getTitre()}</td>
+                                                                    <td>${eA.getEtat()}</td>
+                                                                    <td>${eA.getDate_achat()}</td>
+                                                                    <td>
+                                                                        <a href="oeuvre_et_exemplaire?action=delete&exemplaireId=<c:out value="${eA.getId()}"/>">Supprimer</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <%
+                        String message = (String) request.getAttribute("message");
+
+                        if (message != null) {
+                            if (message.equals("ok")) {
+                    %>
+                    <div class='alert alert-success' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Données Enregistrées !</strong>
+                    </div>
+                    <%
+                    } else if (message.equals("ko")) {
+                    %>
+                    <div class='alert alert-danger' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Informations Incomplètes ou Incorrectes !</strong>
+                    </div>
+                    <%
+                    } else if (message.equals("")) {
+                    } else {
+                    %>
+                    <div class='alert alert-danger' style='position:fixed;bottom:0px;width:70%;text-align:center;'>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong><%= message%></strong>
+                    </div>
+                    <%
+                            }
                         }
-                    }
-                %>
-            </div>
-    </body>
-</html>
-<script type="text/javascript">
-    $(function () {
-        $('#datePickerLivre').datepicker({
-            format: "dd/mm/yyyy"
-        });
-    });
-    $(function () {
-        $('#datePickerMag').datepicker({
-            format: "dd/mm/yyyy"
-        });
-    });
-    $(function () {
-        $('#datePickerEx').datepicker({
-            format: "dd/mm/yyyy"
-        });
-    });
-</script>
+                    %>
+                </div>
+                </body>
+                </html>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datePickerLivre').datepicker({
+                            format: "dd/mm/yyyy"
+                        });
+                    });
+                    $(function () {
+                        $('#datePickerMag').datepicker({
+                            format: "dd/mm/yyyy"
+                        });
+                    });
+                    $(function () {
+                        $('#datePickerEx').datepicker({
+                            format: "dd/mm/yyyy"
+                        });
+                    });
+                </script>

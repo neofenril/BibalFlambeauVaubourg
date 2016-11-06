@@ -13,6 +13,8 @@ import util.HibernateUtil;
 
 public class Exemplaire {
 
+    
+
     private int id;
     private Date date_achat;
     private String etat;
@@ -163,11 +165,6 @@ public class Exemplaire {
         Query query = session.createQuery(hql);
         query.setParameter("dateAchatLimite", dateAchatLimite);
         ArrayList results = new ArrayList(query.list());
-
-        
-        
-        
-
         return results;
     }
     
@@ -186,5 +183,25 @@ public class Exemplaire {
         session.getTransaction().commit();
         session.close();
         
+    }
+    
+    public static Exemplaire e_identification(Oeuvre oExiste) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        String hql = "SELECT e FROM Exemplaire e WHERE e.livre=:l OR e.magazine=:m";
+        Query query = session.createQuery(hql);
+        query.setParameter("l", oExiste);
+        query.setParameter("m", oExiste);
+        List results = query.list();
+
+        session.close();
+
+        Exemplaire e = null;
+        if (!results.isEmpty()) {
+            e = (Exemplaire) results.get(0);
+        }
+
+        return e;
     }
 }

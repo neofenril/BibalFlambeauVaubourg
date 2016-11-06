@@ -8,6 +8,8 @@ import org.hibernate.query.Query;
 import util.HibernateUtil;
 
 public class Livre extends Oeuvre {
+
+    
 	private Date date_edition;
 	private String resume;
         
@@ -48,9 +50,7 @@ public class Livre extends Oeuvre {
         return l;
     }
 
-    public static void e_supprimer(String titre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
     public static Livre e_ajouter(String titre, String auteur, String date, String resume) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -75,5 +75,12 @@ public class Livre extends Oeuvre {
         session.close();
         
         return nvLivre;
+    }
+    public static void e_supprimer(Oeuvre o) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.delete(o);
+        session.getTransaction().commit();
+        session.close();
     }
 }

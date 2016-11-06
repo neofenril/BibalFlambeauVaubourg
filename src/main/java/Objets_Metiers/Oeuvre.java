@@ -6,6 +6,8 @@ import org.hibernate.query.Query;
 import util.HibernateUtil;
 
 public abstract class Oeuvre {
+
+    
         private int id;
 	private String titre;
 	private String auteur;
@@ -44,5 +46,15 @@ public abstract class Oeuvre {
             o = Livre.e_identification(titre);
         }
         return o;
+    }
+    
+    public static void e_supprimer(Oeuvre o, String typeOeuvre) {
+
+        if(typeOeuvre.equals("magazine")){
+            Magazine.e_supprimer(o);
+        }else{
+            Livre.e_supprimer(o);
+        }
+
     }
 }
