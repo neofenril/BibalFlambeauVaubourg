@@ -165,7 +165,7 @@ public class Emprunt {
         return res;
     }
     
-    public static boolean empruntEnCours(Usager u){
+    public static boolean e_empruntEnCours(Usager u){
         
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();

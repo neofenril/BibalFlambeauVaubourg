@@ -99,7 +99,7 @@ public class Gestion_usager extends HttpServlet {
         
         String mailActu = request.getParameter("mailActu").trim();
         Usager uExiste = Usager.e_identification(mailActu);
-        boolean usagerEmpruntEnCours = Emprunt.empruntEnCours(uExiste);
+        boolean usagerEmpruntEnCours = Emprunt.e_empruntEnCours(uExiste);
         
         String message = "ok";
         if (uExiste != null && usagerEmpruntEnCours==false) {  
