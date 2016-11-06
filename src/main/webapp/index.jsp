@@ -1,3 +1,5 @@
+<%@page import="Objets_Metiers.Exemplaire"%>
+<%@page import="Objets_Metiers.Reservation"%>
 <%@page import="java.util.Date"%>
 <%@page import="Objets_Metiers.Emprunt"%>
 <%@page import="java.util.List"%>
@@ -50,9 +52,9 @@ and open the template in the editor.
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
-                                        <li><a href="<c:url value="/usager"/>">Ajouter un Usager</a></li>
-                                <li><a href="<c:url value="/oeuvre_et_exemplaire"/>">Oeuvres et exemplaires</a></li>
-                                <li><a href="<c:url value="/resa_et_emprunt"/>">Réservations et emprunts</a></li>
+                                        <li><a href="<c:url value="/usager"/>">Usager</a></li>
+                                        <li><a href="<c:url value="/oeuvre_et_exemplaire"/>">Oeuvres et exemplaires</a></li>
+                                        <li><a href="<c:url value="/resa_et_emprunt"/>">Réservations et emprunts</a></li>
                                     </ul>
                                 </div><!-- /.navbar-collapse -->
                             </div><!-- /.container-fluid -->
@@ -75,20 +77,16 @@ and open the template in the editor.
                         </thead>
                         <tbody>
                             <%!
-                                List<Emprunt> empruntDateDepassee = Emprunt.e_empruntDateDepassee();
+                                List<List> empruntDateDepassee = Emprunt.e_empruntDateDepassee();
                                 String titre;
                                 String mail;
                                 Date date;
                             %>
                             <%
-                                for (Emprunt e : empruntDateDepassee) {
-                                    if (e.getExemplaire().getLivre() == null) {
-                                        titre = e.getExemplaire().getMagazine().getTitre();
-                                    } else {
-                                        titre = e.getExemplaire().getLivre().getTitre();
-                                    }
-                                    mail = e.getUsager().getMail();
-                                    date = e.getDate_fin_prevue();
+                                for (List  l: empruntDateDepassee) {
+                                    titre = (String)l.get(0);
+                                    mail = (String)l.get(1);
+                                    date = (Date)l.get(2);
                             %>
                             <tr>
                                 <td><%=titre%></td>
@@ -103,10 +101,48 @@ and open the template in the editor.
                 </div>
                 <div class="col-md-2"></div>
             </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8" style="text-align:center;background-color:white;padding-bottom:2%">
+                    <h3>Réservation Disponible</h3>
+                    <table style="width:100%;text-align:center;">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">Type Oeuvre</th>
+                                <th style="text-align:center;">Titre Oeuvre</th>
+                                <th style="text-align:center;">Mail Usager</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%!
+                                List<List> reservationDispo = Reservation.e_reservationDispo();
+                                String typeResa;
+                                String titreResa;
+                                String mailResa;
+                            %>
+                            <%
+                                for (List  l: reservationDispo) {
+                                    typeResa = (String)l.get(0);
+                                    titreResa = (String)l.get(1);
+                                    mailResa = (String)l.get(2);
+                            %>
+                            <tr>
+                                <td><%=typeResa%></td>
+                                <td><%=titreResa%></td>
+                                <td><%=mailResa%></td>
+                            </tr>  
+                            <%
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
         </div>
-        
-        
-        
+
+
+
         <%
             String message = (String) session.getAttribute("message");
 

@@ -96,18 +96,37 @@ public class Usager {
      * 
      * @param name
      */
-    public void e_modifier(String name) {
-    	// TODO - implement Usager.e_modifier
-        throw new UnsupportedOperationException();
+    public static Usager e_modifier(int id, String nom, String prenom, String mail) {
+    	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+		 
+	Usager nvUsager = new Usager();
+        nvUsager.setId(id);
+        nvUsager.setNom(nom);
+        nvUsager.setPrenom(prenom);
+        nvUsager.setMail(mail);
+        session.update(nvUsager);
+        
+	session.getTransaction().commit();
+        session.close();
+        
+        return nvUsager;
     }
 
     /**
      * 
      * @param name
     */
-    public void e_supprimer(String name) {
-	// TODO - implement Usager.e_supprimer
-        throw new UnsupportedOperationException();
+    public static void e_supprimer(int id) {
+	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+		 
+	Usager nvUsager = new Usager();
+        nvUsager.setId(id);
+        session.delete(nvUsager);
+        
+	session.getTransaction().commit();
+        session.close();
     }
         
     @Override

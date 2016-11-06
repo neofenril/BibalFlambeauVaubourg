@@ -26,7 +26,22 @@ public class Gestion_usager extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String message = e_ajouterUsager(request);
+        String action = request.getParameter("gestion_usager");
+        String message = "ok";
+        
+        switch(action){
+                case "ajout":
+                    message = e_ajouterUsager(request);
+                    break;
+                case "modif":
+                    message = e_modifierUsager(request);
+                    break;
+                case "suppr":
+                    message = e_supprimerUsager(request);
+                    break;
+        }
+        
+        
         request.setAttribute("message", message);
         this.getServletContext().getRequestDispatcher("/WEB-INF/IHM_usager.jsp").forward(request, response);
     }
@@ -42,6 +57,46 @@ public class Gestion_usager extends HttpServlet {
         String message = "ok";
         if (isEmail && nom != null && prenom != null && uExiste == null) {
             Usager u = Usager.e_ajouter(nom, prenom, mail);
+        } else {
+            message = "ko";
+        }
+        return message;
+    }
+    
+    public static String e_modifierUsager(HttpServletRequest request){
+        String mailActu = request.getParameter("mailActu").trim();
+        String nom = request.getParameter("nom").trim();
+        String prenom = request.getParameter("prenom").trim();
+        String mail = request.getParameter("mail").trim();
+        
+        Usager uExiste = Usager.e_identification(mailActu);
+        if(nom == ""){
+            nom = uExiste.getNom();
+        }
+        if(prenom == ""){
+            prenom = uExiste.getPrenom();
+        }
+        if(mail == ""){
+            mail = uExiste.getMail();
+        }
+        boolean isEmail = Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", mail);
+        
+        String message = "ok";
+        if (isEmail && uExiste != null) {            
+            Usager u = Usager.e_modifier(uExiste.getId(), nom, prenom, mail);
+        } else {
+            message = "ko";
+        }
+        return message;
+    }
+    
+    public static String e_supprimerUsager(HttpServletRequest request){
+        String mailActu = request.getParameter("mailActu").trim();
+        Usager uExiste = Usager.e_identification(mailActu);
+        
+        String message = "ok";
+        if (uExiste != null) {            
+            Usager.e_supprimer(uExiste.getId());
         } else {
             message = "ko";
         }

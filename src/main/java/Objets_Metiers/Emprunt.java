@@ -1,6 +1,7 @@
 package Objets_Metiers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -132,7 +133,7 @@ public class Emprunt {
         session.close();
     }
     
-    public static List<Emprunt> e_empruntDateDepassee(){
+    public static List<List> e_empruntDateDepassee(){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
@@ -140,6 +141,27 @@ public class Emprunt {
         Query query = session.createQuery(hql);
         List results = query.list();
         
-        return results;
+        List res = new ArrayList();
+        for(Object o: results){
+            Emprunt e = (Emprunt)o;
+            
+            String titre = "";
+            if(e.getExemplaire().getLivre() == null){
+                titre = e.getExemplaire().getMagazine().getTitre();
+            }else{
+                titre = e.getExemplaire().getLivre().getTitre();
+            }
+            String mail = e.getUsager().getMail();
+            Date date = e.getDate_fin_prevue();
+            
+            ArrayList data = new ArrayList();
+            data.add(titre);
+            data.add(mail);
+            data.add(date);
+            res.add(data);
+        }
+        
+        session.close();
+        return res;
     }
 }

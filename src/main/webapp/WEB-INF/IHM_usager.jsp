@@ -44,7 +44,7 @@
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                     <ul class="nav navbar-nav">
-                                        <li><a href="<c:url value="/usager"/>">Ajouter un Usager</a></li>
+                                        <li><a href="<c:url value="/usager"/>">Usager</a></li>
                                 <li><a href="<c:url value="/oeuvre_et_exemplaire"/>">Oeuvres et exemplaires</a></li>
                                 <li><a href="<c:url value="/resa_et_emprunt"/>">Réservations et emprunts</a></li>
                                     </ul>
@@ -62,7 +62,7 @@
                             <a data-toggle="collapse" href="#collapse1">Ajouter un Usager</a>
                         </h4>
                     </div>
-                    <div id="collapse1" class="panel-collapse collapse in">
+                    <div id="collapse1" class="panel-collapse collapse">
                         <div>
                             <form action="<c:url value="/usager"/>" method="POST">
                                 <div class="modal-body">
@@ -96,6 +96,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <input type="hidden" name="gestion_usager" value="ajout" />
                                     <input type="submit" class="btn btn-primary" value="Enregistrer" />
                                 </div>
                             </form>
@@ -103,6 +104,94 @@
                     </div>
                 </div>
             </div>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse2">Modifier un Usager</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div>
+                            <form action="<c:url value="/usager"/>" method="POST">
+                                <div class="modal-body">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                Mail :
+                                            </td>
+                                            <td>
+                                                <input type="text" name="mailActu" value="" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Nouveau Nom :
+                                            </td>
+                                            <td>
+                                                <input type="text" name="nom" value="" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Nouveau Prenom :
+                                            </td>
+                                            <td>
+                                                <input type="text" name="prenom" value="" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Nouveau Mail :
+                                            </td>
+                                            <td>
+                                                <input type="text" name="mail" value="" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <input type="hidden" name="gestion_usager" value="modif" />
+                                    <input type="submit" class="btn btn-primary" value="Enregistrer" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse3">Supprimer un Usager</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div>
+                            <form action="<c:url value="/usager"/>" method="POST">
+                                <div class="modal-body">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                Mail :
+                                            </td>
+                                            <td>
+                                                <input type="text" name="mailActu" value="" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <input type="hidden" name="gestion_usager" value="suppr" />
+                                    <input type="submit" class="btn btn-primary" value="Enregistrer" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>                  
             <%
                 String message = (String) request.getAttribute("message");
 

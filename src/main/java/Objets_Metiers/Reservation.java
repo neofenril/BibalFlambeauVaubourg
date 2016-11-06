@@ -1,6 +1,7 @@
 package Objets_Metiers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
@@ -118,6 +119,68 @@ public class Reservation {
         session.close();
     }
 
+    public static List<List> e_reservationDispo(){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        String hql = "SELECT ex FROM Exemplaire ex WHERE ex NOT IN (SELECT em.exemplaire FROM Emprunt em WHERE date_fin_effective is null) AND ex.magazine is null GROUP BY ex.livre";
+        Query query = session.createQuery(hql);
+        List results = query.list();
+        
+        hql = "SELECT ex FROM Exemplaire ex WHERE ex NOT IN (SELECT em.exemplaire FROM Emprunt em WHERE date_fin_effective is null) AND ex.livre is null GROUP BY ex.magazine";
+        query = session.createQuery(hql);
+        results.addAll(query.list());
+        
+        List results2 = new ArrayList();
+        for(Object o: results){
+            Exemplaire ex = (Exemplaire)o;
+            
+            if(ex.getLivre() == null){
+                Magazine m = ex.getMagazine();
+                hql = "SELECT r FROM Reservation r WHERE r.magazine=:magazine ORDER BY r.date_demande";
+                Query query2 = session.createQuery(hql);
+                query2.setParameter("magazine", m);
+                
+                if(!query2.list().isEmpty()){
+                    results2.add(query2.list().get(0));
+                }
+            }else{
+                Livre l = ex.getLivre();
+                hql = "SELECT r FROM Reservation r WHERE r.livre=:livre ORDER BY r.date_demande";
+                Query query2 = session.createQuery(hql);
+                query2.setParameter("livre", l);
+                
+                if(!query2.list().isEmpty()){
+                    results2.add(query2.list().get(0));
+                }
+            }
+        }
+        
+        List res = new ArrayList();
+        for(Object o: results2){
+            Reservation r = (Reservation)o;
+            String titre = "";
+            String type = "";
+            if(r.getLivre() == null){
+                type = "Magazine";
+                titre = r.getMagazine().getTitre();
+            }else{
+                type = "Livre";
+                titre = r.getLivre().getTitre();
+            }
+            String mail = r.getUsager().getMail();
+            
+            ArrayList data = new ArrayList();
+            data.add(type);
+            data.add(titre);
+            data.add(mail);
+            res.add(data);
+        }
+        
+        session.close();
+        return res;
+    }
+    
     public int getId() {
         return id;
     }
