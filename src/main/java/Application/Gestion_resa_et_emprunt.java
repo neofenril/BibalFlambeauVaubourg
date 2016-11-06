@@ -28,7 +28,7 @@ public class Gestion_resa_et_emprunt extends HttpServlet {
 
         switch (action) {
             case "addResa":
-                message = e_ajouterEmprunt(request);
+                message = e_ajouterReservation(request);
                 break;
             case "delResa":
                 message = e_supprimerReservation(request);

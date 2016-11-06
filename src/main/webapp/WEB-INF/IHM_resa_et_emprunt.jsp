@@ -259,7 +259,7 @@
                                                                     <select name="etat">
                                                                         <option value="neuf">neuf</option>
                                                                         <option value="usé">use</option>
-                                                                        <option value="abimé">abime</option>
+                                                                        <option value="abime">abime</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
