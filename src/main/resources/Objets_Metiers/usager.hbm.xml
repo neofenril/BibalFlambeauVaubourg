@@ -12,5 +12,6 @@
       <property name="nom" />
       <property name="prenom" />
       <property name="mail" />
+      <property name="actif"  />
   </class>
 </hibernate-mapping>

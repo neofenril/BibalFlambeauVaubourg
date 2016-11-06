@@ -9,13 +9,26 @@ import util.HibernateUtil;
 
 
 public class Usager {
+
+    
     private int id;
     private String nom;
     private String prenom;
     private String mail;
+    private boolean actif;
+
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
 
     
-    public Usager(){}
+    public Usager(){
+        this.setActif(true);
+    }
 
     public int getId() {
         return id;
@@ -72,6 +85,18 @@ public class Usager {
         return u;
     }
 
+    public static void e_activer(Usager uExiste) {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        
+        uExiste.setActif(true);
+        
+        session.update(uExiste);
+        
+	session.getTransaction().commit();
+        session.close();
+    }
+    
     /**
      * 
      * @param name
@@ -117,13 +142,15 @@ public class Usager {
      * 
      * @param name
     */
-    public static void e_supprimer(int id) {
+    public static void e_supprimer(String mail) {
+        Usager nvUsager = Usager.e_identification(mail);
+        
 	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 		 
-	Usager nvUsager = new Usager();
-        nvUsager.setId(id);
-        session.delete(nvUsager);
+	
+        nvUsager.setActif(false);
+        session.update(nvUsager);
         
 	session.getTransaction().commit();
         session.close();

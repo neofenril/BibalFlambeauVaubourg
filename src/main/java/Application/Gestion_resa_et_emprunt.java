@@ -60,7 +60,7 @@ public class Gestion_resa_et_emprunt extends HttpServlet {
 
         Date date = new Date(Calendar.getInstance().getTime().getTime());
 
-        if (oExiste != null && date != null && uExiste != null) {
+        if (oExiste != null && date != null && uExiste != null && uExiste.isActif()) {
             Reservation r = Reservation.e_ajouter(uExiste, typeOeuvre, oExiste, date);
         } else {
             message = "ko";
@@ -94,7 +94,7 @@ public class Gestion_resa_et_emprunt extends HttpServlet {
         Exemplaire eExiste = Exemplaire.e_identification(idExemplaire);
         Usager uExisteEmpr = Usager.e_identification(mailUsager);
 
-        if (eExiste != null && uExisteEmpr != null) {
+        if (eExiste != null && uExisteEmpr != null && uExisteEmpr.isActif()) {
             boolean insert = true;
             List<Reservation> resas = null;
             if (eExiste.getLivre() != null) {

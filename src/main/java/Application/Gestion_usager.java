@@ -5,6 +5,8 @@
  */
 package Application;
 
+import Objets_Metiers.Emprunt;
+import Objets_Metiers.Reservation;
 import Objets_Metiers.Usager;
 import java.io.IOException;
 import java.util.regex.Pattern;
@@ -38,6 +40,9 @@ public class Gestion_usager extends HttpServlet {
                     break;
                 case "suppr":
                     message = e_supprimerUsager(request);
+                    break;
+                case "activ":
+                    message = e_activerUsager(request);
                     break;
         }
         
@@ -91,12 +96,28 @@ public class Gestion_usager extends HttpServlet {
     }
     
     public static String e_supprimerUsager(HttpServletRequest request){
+        
         String mailActu = request.getParameter("mailActu").trim();
         Usager uExiste = Usager.e_identification(mailActu);
+        boolean usagerEmpruntEnCours = Emprunt.empruntEnCours(uExiste);
         
         String message = "ok";
-        if (uExiste != null) {            
-            Usager.e_supprimer(uExiste.getId());
+        if (uExiste != null && usagerEmpruntEnCours==false) {  
+            Reservation.e_deleteAllResaUser(uExiste);
+            Usager.e_supprimer(uExiste.getMail());
+        } else {
+            message = "ko";
+        }
+        return message;
+    }
+
+    private String e_activerUsager(HttpServletRequest request) {
+        
+        String mailActu = request.getParameter("mailActu").trim();
+        Usager uExiste = Usager.e_identification(mailActu);
+        String message = "ok";
+        if (uExiste != null ) {
+            Usager.e_activer(uExiste);
         } else {
             message = "ko";
         }

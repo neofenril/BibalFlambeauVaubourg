@@ -89,12 +89,12 @@ public class Reservation {
 
         List results;
         if (typeOeuvre.equals("livre")) {
-            hql = "SELECT r FROM Reservation r WHERE r.livre=:oeuvre ORDER BY r.date_demande";
+            hql = "SELECT r FROM Reservation r, Usager u WHERE r.usager=u.id AND u.actif=1 AND r.livre=:oeuvre ORDER BY r.date_demande";
             Query query = session.createQuery(hql);
             query.setParameter("oeuvre", (Livre) oeuvre);
             results = query.list();
         } else {
-            hql = "SELECT r FROM Reservation r WHERE r.magazine=:oeuvre ORDER BY r.date_demande";
+            hql = "SELECT r FROM Reservation r, Usager u WHERE r.usager=u.id AND u.actif=1 AND r.magazine=:oeuvre ORDER BY r.date_demande";
             Query query = session.createQuery(hql);
             query.setParameter("oeuvre", (Magazine) oeuvre);
             results = query.list();
@@ -137,7 +137,7 @@ public class Reservation {
             
             if(ex.getLivre() == null){
                 Magazine m = ex.getMagazine();
-                hql = "SELECT r FROM Reservation r WHERE r.magazine=:magazine ORDER BY r.date_demande";
+                hql = "SELECT r FROM Reservation r, Usager u WHERE r.usager=u.id AND u.actif=1 AND r.magazine=:magazine ORDER BY r.date_demande";
                 Query query2 = session.createQuery(hql);
                 query2.setParameter("magazine", m);
                 
@@ -146,7 +146,7 @@ public class Reservation {
                 }
             }else{
                 Livre l = ex.getLivre();
-                hql = "SELECT r FROM Reservation r WHERE r.livre=:livre ORDER BY r.date_demande";
+                hql = "SELECT r FROM Reservation r, Usager u WHERE r.usager=u.id AND u.actif=1 AND r.livre=:livre ORDER BY r.date_demande";
                 Query query2 = session.createQuery(hql);
                 query2.setParameter("livre", l);
                 
@@ -179,6 +179,22 @@ public class Reservation {
         
         session.close();
         return res;
+    }
+    
+    public static void e_deleteAllResaUser(Usager u)
+    {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        
+        
+        String hql;
+        hql = "DELETE  FROM Reservation r WHERE r.usager=:usager";
+        Query query = session.createQuery(hql);
+        query.setParameter("usager", u);
+        query.executeUpdate();
+        
+        session.getTransaction().commit();
+        session.close();
     }
     
     public int getId() {

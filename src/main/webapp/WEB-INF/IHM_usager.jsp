@@ -164,7 +164,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapse3">Supprimer un Usager</a>
+                            <a data-toggle="collapse" href="#collapse3">Désactiver un Usager</a>
                         </h4>
                     </div>
                     <div id="collapse3" class="panel-collapse collapse">
@@ -191,7 +191,39 @@
                         </div>
                     </div>
                 </div>
-            </div>                  
+            </div>   
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse4">Réactiver un Usager</a>
+                        </h4>
+                    </div>
+                    <div id="collapse4" class="panel-collapse collapse">
+                        <div>
+                            <form action="<c:url value="/usager"/>" method="POST">
+                                <div class="modal-body">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                Mail :
+                                            </td>
+                                            <td>
+                                                <input type="text" name="mailActu" value="" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <input type="hidden" name="gestion_usager" value="activ" />
+                                    <input type="submit" class="btn btn-primary" value="Enregistrer" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>                         
             <%
                 String message = (String) request.getAttribute("message");
 

@@ -164,4 +164,26 @@ public class Emprunt {
         session.close();
         return res;
     }
+    
+    public static boolean empruntEnCours(Usager u){
+        
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        String hql = "SELECT e FROM Emprunt e WHERE e.usager=:usager AND e.date_fin_effective is null";
+        Query query = session.createQuery(hql);
+        query.setParameter("usager", u);
+        List results = query.list();
+        session.close();
+        if(results.isEmpty())
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        
+        
+    }
 }
