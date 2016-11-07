@@ -1,5 +1,6 @@
 package Objets_Metiers;
 
+import static Application.Gestion_oeuvre_et_exemplaire.e_supprimerExemplaire;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -168,12 +169,12 @@ public class Exemplaire {
         return results;
     }
     
-    public static void e_deleteAction(int id) {
+    public static void e_supprimerExemplaire(int id) {
         
         
         
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction tx = session.beginTransaction();
+        session.beginTransaction();
         
         Exemplaire exemplaire;
         

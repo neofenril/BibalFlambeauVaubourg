@@ -331,6 +331,38 @@
                                             </div>
                                         </div>
                                     </div>
+                                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordionExemp" href="#collapseExemp3">Supprimer éxemplaire spécifique</a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseExemp3" class="panel-collapse collapse" >
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <form action="<c:url value="/oeuvre_et_exemplaire"/>" method="POST">
+                                                    <div class="modal-body">
+                                                        <table>
+                                                            <tr>
+                                                                <td>
+                                                                    Identifiant exemplaire
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" name="exemplaireId" value="" />
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                        <input type="hidden" name="gestion_oeuvre" value="delExemp" />
+                                                        <input type="submit" class="btn btn-primary" value="Enregistrer" />
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

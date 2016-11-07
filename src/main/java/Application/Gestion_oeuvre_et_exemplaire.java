@@ -29,8 +29,8 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
         
         if (action != null && action.equalsIgnoreCase("delete")){
             
-            int userId = Integer.parseInt(request.getParameter("exemplaireId"));
-            e_deleteAction(userId);
+            
+            e_supprimerExemplaire(request);
         }
         
         ArrayList exemplaireAbime = new ArrayList();
@@ -60,6 +60,9 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
                 break;
             case "delOeuvre":
                 message = e_supprimerOeuvre(request);
+                break;
+            case "delExemp":
+                message = e_supprimerExemplaire(request);
                 break;
         }
 
@@ -124,9 +127,19 @@ public class Gestion_oeuvre_et_exemplaire extends HttpServlet {
         return message;
     }
     
-    public static void e_deleteAction(int id) {
+    public static String e_supprimerExemplaire(HttpServletRequest request) {
         
-        Exemplaire.e_deleteAction(id);
+        int id = Integer.parseInt(request.getParameter("exemplaireId"));
+        String message = "ok";
+        Exemplaire exExist = Exemplaire.e_identification(id);
+        if(exExist !=null)
+        {
+            Exemplaire.e_supprimerExemplaire(id);
+        }
+        else{
+            message ="ko";
+        }
+        return message;
         
     }
 
