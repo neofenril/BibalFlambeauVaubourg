@@ -93,24 +93,6 @@ public class Exemplaire {
         return e;
     }
 
-    /**
-     *
-     * @param id
-     */
-    public static void e_modifier(int id) {
-        // TODO - implement Exemplaire.e_modifier
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     *
-     * @param id
-     */
-    public static void e_supprimer(int id) {
-        // TODO - implement Exemplaire.e_supprimer
-        throw new UnsupportedOperationException();
-    }
-
     public static Exemplaire e_ajouter(String date, String typeOeuvre, Oeuvre oeuvre) {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
