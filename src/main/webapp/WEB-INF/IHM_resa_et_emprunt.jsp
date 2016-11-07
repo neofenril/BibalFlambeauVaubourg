@@ -258,7 +258,7 @@
                                                                 <td>
                                                                     <select name="etat">
                                                                         <option value="neuf">neuf</option>
-                                                                        <option value="usé">use</option>
+                                                                        <option value="use">use</option>
                                                                         <option value="abime">abime</option>
                                                                     </select>
                                                                 </td>
